@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/CongTy/basemvvm-main/BaseMVVM/app/src/main/res/drawable-mdpi/custom_btn_create_race.xml" value="0.1085" />
+        <entry key="..\:/CongTy/basemvvm-main/BaseMVVM/app/src/main/res/drawable-mdpi/custom_button_login.xml" value="0.1545" />
+        <entry key="..\:/CongTy/basemvvm-main/BaseMVVM/app/src/main/res/drawable-mdpi/custom_edittext_email_icon.xml" value="0.1185" />
+        <entry key="..\:/CongTy/basemvvm-main/BaseMVVM/app/src/main/res/drawable-mdpi/custom_radio_button.xml" value="0.1185" />
+        <entry key="..\:/CongTy/basemvvm-main/BaseMVVM/app/src/main/res/drawable-mdpi/ic_baseline_radio_button_checked_24.xml" value="0.1185" />
+        <entry key="..\:/CongTy/basemvvm-main/BaseMVVM/app/src/main/res/drawable-mdpi/ic_box_24.xml" value="0.1" />
+        <entry key="..\:/CongTy/basemvvm-main/BaseMVVM/app/src/main/res/drawable-mdpi/icon_login_account.xml" value="0.1085" />
+        <entry key="..\:/CongTy/basemvvm-main/BaseMVVM/app/src/main/res/drawable-mdpi/icon_login_account_focus.xml" value="0.1185" />
+        <entry key="..\:/CongTy/basemvvm-main/BaseMVVM/app/src/main/res/drawable-mdpi/image_checkbox.xml" value="0.166" />
+        <entry key="..\:/CongTy/basemvvm-main/BaseMVVM/app/src/main/res/drawable-xxhdpi/icon_login_name.xml" value="0.2665" />
+        <entry key="..\:/CongTy/basemvvm-main/BaseMVVM/app/src/main/res/drawable-xxxhdpi/round_back_while_stroke_1000.xml" value="0.1945" />
+        <entry key="..\:/CongTy/basemvvm-main/BaseMVVM/app/src/main/res/drawable/custom_edittext_addjob.xml" value="0.184" />
+        <entry key="..\:/CongTy/basemvvm-main/BaseMVVM/app/src/main/res/drawable/profile_custom_avatar.xml" value="0.2265" />
+        <entry key="..\:/CongTy/basemvvm-main/BaseMVVM/app/src/main/res/layout/activity_candidate.xml" value="0.2" />
+        <entry key="..\:/CongTy/basemvvm-main/BaseMVVM/app/src/main/res/layout/activity_employer_main.xml" value="0.2" />
+        <entry key="..\:/CongTy/basemvvm-main/BaseMVVM/app/src/main/res/layout/activity_first.xml" value="0.25" />
+        <entry key="..\:/CongTy/basemvvm-main/BaseMVVM/app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="..\:/CongTy/basemvvm-main/BaseMVVM/app/src/main/res/layout/dialog_confirm.xml" value="0.25" />
+        <entry key="..\:/CongTy/basemvvm-main/BaseMVVM/app/src/main/res/layout/fragment_add_job.xml" value="0.25" />
+        <entry key="..\:/CongTy/basemvvm-main/BaseMVVM/app/src/main/res/layout/fragment_job_information.xml" value="0.33" />
+        <entry key="..\:/CongTy/basemvvm-main/BaseMVVM/app/src/main/res/layout/fragment_login.xml" value="0.2" />
+        <entry key="..\:/CongTy/basemvvm-main/BaseMVVM/app/src/main/res/layout/fragment_my_job.xml" value="0.2572463768115942" />
+        <entry key="..\:/CongTy/basemvvm-main/BaseMVVM/app/src/main/res/layout/fragment_noticification.xml" value="0.21603260869565216" />
+        <entry key="..\:/CongTy/basemvvm-main/BaseMVVM/app/src/main/res/layout/fragment_profile.xml" value="0.22" />
+        <entry key="..\:/CongTy/basemvvm-main/BaseMVVM/app/src/main/res/layout/fragment_register.xml" value="0.20754716981132076" />
+        <entry key="..\:/CongTy/basemvvm-main/BaseMVVM/app/src/main/res/layout/fragment_signout_fragamt.xml" value="0.3484375" />
+        <entry key="..\:/CongTy/basemvvm-main/BaseMVVM/app/src/main/res/layout/fragment_update_skill.xml" value="0.25" />
+        <entry key="..\:/CongTy/basemvvm-main/BaseMVVM/app/src/main/res/layout/fragment_user.xml" value="0.25" />
+        <entry key="..\:/CongTy/basemvvm-main/BaseMVVM/app/src/main/res/layout/item_job.xml" value="0.33" />
+        <entry key="..\:/CongTy/basemvvm-main/BaseMVVM/app/src/main/res/layout/item_user.xml" value="0.25" />
+        <entry key="..\:/CongTy/basemvvm-main/BaseMVVM/app/src/main/res/layout/layout_loading.xml" value="0.4" />
+        <entry key="..\:/CongTy/basemvvm-main/BaseMVVM/app/src/main/res/layout/rate_us_dialog_layout.xml" value="0.22" />
+        <entry key="..\:/CongTy/basemvvm-main/BaseMVVM/app/src/main/res/menu/menu_bottom_nav.xml" value="0.3625" />
+        <entry key="..\:/CongTy/basemvvm-main/BaseMVVM/app/src/main/res/menu/menu_bottom_nav_candidate.xml" value="0.3625" />
+        <entry key="..\:/Project/BaseMVVM/app/src/main/res/layout/activity_main.xml" value="0.17604166666666668" />
+        <entry key="..\:/Project/BaseMVVM/app/src/main/res/layout/dialog_confirm.xml" value="0.2" />
+        <entry key="..\:/Project/BaseMVVM/app/src/main/res/layout/fragment_file.xml" value="0.17604166666666668" />
+        <entry key="..\:/Project/BaseMVVM/app/src/main/res/layout/fragment_user.xml" value="0.1796875" />
+        <entry key="..\:/Project/BaseMVVM/app/src/main/res/layout/item_user.xml" value="0.25" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>

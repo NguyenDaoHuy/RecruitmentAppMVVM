@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/myJobFragment2"
+         android:title="Danh sách việc"
+         android:icon="@drawable/icon_menu_job_2"/>
+    <item android:id="@+id/profileFragment2"
+        android:title="Cá nhân"
+        android:icon="@drawable/icon_menu_user"/>
+    <item android:id="@+id/notificationFragment2"
+        android:title="Thông báo"
+        android:icon="@drawable/icon_menu_notification"/>
+</menu>

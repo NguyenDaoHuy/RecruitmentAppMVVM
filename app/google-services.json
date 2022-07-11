@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "302244955554",
+    "project_id": "recruitmentapp-6161d",
+    "storage_bucket": "recruitmentapp-6161d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:302244955554:android:fa950d030d06c952049efb",
+        "android_client_info": {
+          "package_name": "com.cuongpq.basemvvm"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "302244955554-e1osftem6j0vaclsmi0lm8dpossqj46b.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDQl0sW7-he7-VEAMNavXQ7O9piNy2C7Pc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "302244955554-e1osftem6j0vaclsmi0lm8dpossqj46b.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
