@@ -27,6 +27,7 @@ class ProfileViewModel @Inject constructor(
         val SHOW_DIALOG = 1002
         val ON_CLICK_AVT = 1003
         val ON_CLICK_SET_AVT = 1004
+        val ON_CLICK_COMPANY = 1005
     }
     init {
         auth = FirebaseAuth.getInstance()
@@ -52,5 +53,8 @@ class ProfileViewModel @Inject constructor(
     }
     fun onClickSetAvatar(){
         uiEventLiveData.value = ON_CLICK_SET_AVT
+    }
+    fun onClickCompany(){
+        uiEventLiveData.value = ON_CLICK_COMPANY
     }
 }

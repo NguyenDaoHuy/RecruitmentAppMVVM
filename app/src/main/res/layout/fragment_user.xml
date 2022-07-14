@@ -3,7 +3,7 @@
     <data>
         <variable
             name="userViewModel"
-            type="com.cuongpq.basemvvm.ui.main.user.UserViewModel" />
+            type="com.cuongpq.basemvvm.ui.xample.user.UserViewModel" />
         <import type="android.view.View"/>
     </data>
     <RelativeLayout
@@ -34,18 +34,20 @@
                 android:textSize="18dp"
                 android:layout_gravity="center_vertical"/>
         </LinearLayout>
+
         <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/sw_refresh"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:refreshing="@{userViewModel.mIsRefreshing}"
-            app:onRefreshListener="@{() -> userViewModel.onRefresh()}"
-            android:layout_marginTop="8dp"
             android:layout_below="@+id/ln_actionbar"
-            android:id="@+id/sw_refresh">
+            android:layout_marginTop="8dp"
+            app:onRefreshListener="@{() -> userViewModel.onRefresh()}"
+            app:refreshing="@{userViewModel.mIsRefreshing}">
+
             <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rc_list_user"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/rc_list_user"/>
+                android:layout_height="match_parent" />
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
     </RelativeLayout>
 </layout>

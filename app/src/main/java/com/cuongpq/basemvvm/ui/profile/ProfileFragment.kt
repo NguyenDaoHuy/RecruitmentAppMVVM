@@ -22,6 +22,7 @@ import com.cuongpq.basemvvm.databinding.FragmentProfileBinding
 import com.cuongpq.basemvvm.ui.base.fragment.BaseMvvmFragment
 import com.cuongpq.basemvvm.ui.base.viewmodel.BaseViewModel
 import com.cuongpq.basemvvm.ui.dialog.RateUsDialog
+import com.cuongpq.basemvvm.ui.employer.update_company.UpdateCompanyFragment
 import com.cuongpq.basemvvm.ui.login.FirstActivity
 import com.cuongpq.basemvvm.ui.profile.update_skill.UpdateSkillFragment
 import com.google.android.gms.tasks.OnCompleteListener
@@ -51,6 +52,7 @@ class ProfileFragment(var user : User?) : BaseMvvmFragment<ProfileCallBack,Profi
                 ProfileViewModel.SHOW_DIALOG -> showDiaLog()
                 ProfileViewModel.ON_CLICK_AVT -> onClickRequestPermission()
                 ProfileViewModel.ON_CLICK_SET_AVT -> updateAvatar()
+                ProfileViewModel.ON_CLICK_COMPANY -> goToUpdateCompany()
             }
         }
         setInformationUser()
@@ -78,10 +80,28 @@ class ProfileFragment(var user : User?) : BaseMvvmFragment<ProfileCallBack,Profi
     }
 
     fun goToUpdateSkill(){
-        val fragmentTransaction = requireActivity().supportFragmentManager.beginTransaction()
-        fragmentTransaction.replace(R.id.fragmentMain, UpdateSkillFragment())
-        fragmentTransaction.addToBackStack(UpdateSkillFragment.TAG)
-        fragmentTransaction.commit()
+        if(user!!.permission == 0){
+            val fragmentTransaction = requireActivity().supportFragmentManager.beginTransaction()
+            fragmentTransaction.replace(R.id.fragmentMain, UpdateSkillFragment(user))
+            fragmentTransaction.addToBackStack(UpdateSkillFragment.TAG)
+            fragmentTransaction.commit()
+        }else if(user!!.permission == 1){
+            val fragmentTransaction = requireActivity().supportFragmentManager.beginTransaction()
+            fragmentTransaction.replace(R.id.fragmentMain2, UpdateSkillFragment(user))
+            fragmentTransaction.addToBackStack(UpdateSkillFragment.TAG)
+            fragmentTransaction.commit()
+        }
+    }
+
+    fun goToUpdateCompany(){
+        if(user!!.permission == 0){
+            val fragmentTransaction = requireActivity().supportFragmentManager.beginTransaction()
+            fragmentTransaction.replace(R.id.fragmentMain, UpdateCompanyFragment(user!!))
+            fragmentTransaction.addToBackStack(UpdateCompanyFragment.TAG)
+            fragmentTransaction.commit()
+        }else if(user!!.permission == 1){
+            Toast.makeText(context,"Bạn không sử dụng được tính năng này", Toast.LENGTH_SHORT).show()
+        }
     }
 
     fun onClickLogOut(){

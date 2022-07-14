@@ -6,10 +6,10 @@ import com.cuongpq.basemvvm.R
 import com.cuongpq.basemvvm.data.model.User
 import com.cuongpq.basemvvm.databinding.ActivityCandidateBinding
 import com.cuongpq.basemvvm.ui.base.activity.BaseMVVMActivity
-import com.cuongpq.basemvvm.ui.employer.myjob.MyJobFragment
+import com.cuongpq.basemvvm.ui.candidate.list_job.ListJobSearchFragment
+import com.cuongpq.basemvvm.ui.employer.job.my_job.MyJobFragment
 import com.cuongpq.basemvvm.ui.noticification.NoticificationFragment
 import com.cuongpq.basemvvm.ui.profile.ProfileFragment
-import com.cuongpq.basemvvm.ui.utils.OpenFragmentUtils
 
 class CandidateMainActivity : BaseMVVMActivity<CandidateMainCallBack,CandidateMainModelView>(),CandidateMainCallBack {
 
@@ -27,7 +27,7 @@ class CandidateMainActivity : BaseMVVMActivity<CandidateMainCallBack,CandidateMa
     override fun initComponents() {
         user = intent.getSerializableExtra("user") as User?
         getBindingData().candidateMainViewModel = mModel
-        getFragmet(MyJobFragment())
+        getFragmet(ListJobSearchFragment(user))
         onClickMenu()
     }
 
@@ -39,29 +39,25 @@ class CandidateMainActivity : BaseMVVMActivity<CandidateMainCallBack,CandidateMa
     override fun error(id: String, error: Throwable) {
         showMessage(error.message!!)
     }
-    override fun onBackPressed() {
-        if (backPressTime + 2000 > System.currentTimeMillis()) {
-            finishAffinity()
-            System.exit(0)
-            return
-        } else {
-            Toast.makeText(this, "Nhấn 2 lần liên tiếp để thoát app", Toast.LENGTH_SHORT).show()
-        }
-        backPressTime = System.currentTimeMillis()
-    }
+//    override fun onBackPressed() {
+//        if (backPressTime + 2000 > System.currentTimeMillis()) {
+//            finishAffinity()
+//            System.exit(0)
+//            return
+//        } else {
+//            Toast.makeText(this, "Nhấn 2 lần liên tiếp để thoát app", Toast.LENGTH_SHORT).show()
+//        }
+//        backPressTime = System.currentTimeMillis()
+//    }
     private fun onClickMenu(){
         getBindingData().bottomNav.setOnNavigationItemSelectedListener { item ->
             when(item.itemId){
                 R.id.myJobFragment2 -> {
-                    getFragmet(MyJobFragment())
+                    getFragmet(ListJobSearchFragment(user))
                     return@setOnNavigationItemSelectedListener true
                 }
                 R.id.profileFragment2 -> {
                     getFragmet(ProfileFragment(user))
-                    return@setOnNavigationItemSelectedListener true
-                }
-                R.id.notificationFragment2 -> {
-                    getFragmet(NoticificationFragment())
                     return@setOnNavigationItemSelectedListener true
                 }
             }

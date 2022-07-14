@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="createQuestionViewModel"
+            type="com.cuongpq.basemvvm.ui.employer.create_job.create_question.CreateQuestionViewModel"/>
+        <import type="android.view.View"/>
+    </data>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/color_main"
+        android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Tạo câu hỏi"
+                android:textColor="#EDA441"
+                android:textSize="22dp"
+                android:textStyle="bold"
+                android:layout_margin="20dp"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/custom_box_create_request"
+            android:layout_marginRight="15dp"
+            android:layout_marginLeft="15dp"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Câu hỏi"
+                android:layout_gravity="center"
+                android:textColor="@color/black"
+                android:textSize="16dp"
+                android:textStyle="bold"
+                android:layout_margin="10dp"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp">
+                <EditText
+                    android:id="@+id/edQuestion"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_weight="8.5"
+                    android:hint="Nhập câu hỏi"/>
+                <Button
+                    android:id="@+id/btnAddQuestion"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight="1.5"
+                    android:text="Thêm"
+                    android:textAllCaps="false"
+                    android:background="@drawable/custom_button_signout_4"
+                    android:layout_marginLeft="5dp"
+                    android:textColor="@color/white"
+                    android:onClick="@{() -> createQuestionViewModel.onClickAddQuestion()}"/>
+            </LinearLayout>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rcvQuestion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"/>
+        </LinearLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Button
+                android:id="@+id/btnNext"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginBottom="30dp"
+                android:background="@drawable/custom_button_register"
+                android:fontFamily="sans-serif"
+                android:text="Tiếp theo"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="16dp"
+                android:textStyle="bold"
+                android:onClick="@{() -> createQuestionViewModel.onClickNext()}"/>
+        </RelativeLayout>
+    </LinearLayout>
+</layout>

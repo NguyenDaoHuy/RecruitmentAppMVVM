@@ -12,9 +12,7 @@ data class User (var idAccount: String = "",
                  var name: String = "",
                  var age: Int = 0,
                  var phone: String ="",
-                 var permission: Int = 0) : Serializable{
-
-                 }
+                 var permission: Int = 0) : Serializable
 
 //@Entity(tableName = "user")
 //open class User : Serializable{

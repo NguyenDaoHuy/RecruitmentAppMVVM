@@ -1,9 +1,11 @@
 package com.cuongpq.basemvvm.ui.login.signup
 
+import android.app.Activity
 import androidx.lifecycle.MutableLiveData
 import com.cuongpq.basemvvm.data.local.AppDatabase
 import com.cuongpq.basemvvm.data.model.User
 import com.cuongpq.basemvvm.data.remote.InteractCommon
+import com.cuongpq.basemvvm.data.sqlite.SQLiteHelper
 import com.cuongpq.basemvvm.ui.base.viewmodel.BaseViewModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
@@ -49,13 +51,15 @@ class RegisterViewModel @Inject constructor(
         uiEventLiveData.value = BACK_LOGIN
     }
 
-    fun onRegister() {
+    fun onRegister(activity : Activity) {
+        val sqLiteHelper = SQLiteHelper(activity, "Data.sqlite", null, 5)
         auth!!.createUserWithEmailAndPassword(email, password).addOnCompleteListener { task ->
             if (task.isSuccessful) {
                 firebaseDatabase = FirebaseDatabase.getInstance()
                 databaseReference = firebaseDatabase!!.getReference()
                 val IdAcount: String = task.getResult().getUser()!!.getUid()
                 val user = User(IdAcount,email,password,userName,age,phone,permission)
+                sqLiteHelper.QueryData("INSERT INTO User VALUES(null,'$IdAcount','$email','$password','$userName','$age','$phone','$permission','0')")
                 databaseReference!!.child(IdAcount).setValue(user)
                 uiEventLiveData.value = REGISTER_SUCCESS
             } else {

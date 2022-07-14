@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="updateCompanyViewModel"
+            type="com.cuongpq.basemvvm.ui.employer.update_company.UpdateCompanyViewModel"/>
+        <import type="android.view.View"/>
+    </data>
+       <LinearLayout
+           android:layout_width="match_parent"
+           android:layout_height="match_parent"
+           android:orientation="vertical"
+           android:background="@color/white">
+           <RelativeLayout
+               android:layout_width="match_parent"
+               android:layout_height="60dp">
+               <TextView
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:layout_centerInParent="true"
+                   android:text="Cập nhập công ty"
+                   android:textColor="@color/black"
+                   android:textSize="20dp"
+                   android:textStyle="bold" />
+           </RelativeLayout>
+
+           <Spinner
+               android:id="@+id/spinerCompany"
+               android:layout_width="match_parent"
+               android:layout_height="50dp"
+               android:dropDownVerticalOffset="50dp"
+               android:layout_marginStart="20dp"
+               android:layout_marginTop="20dp"
+               android:layout_marginEnd="20dp"
+               android:layout_marginBottom="20dp" />
+           <RelativeLayout
+               android:layout_width="match_parent"
+               android:layout_height="match_parent">
+               <LinearLayout
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:orientation="horizontal"
+                   android:layout_centerHorizontal="true"
+                   android:layout_alignParentBottom="true"
+                   android:layout_marginBottom="70dp">
+                   <Button
+                       android:id="@+id/btnAddCompany"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:text="Thêm mới"
+                       android:background="@drawable/custom_button_register"
+                       android:textColor="@color/white"
+                       android:textAllCaps="false"
+                       android:paddingRight="30dp"
+                       android:paddingLeft="30dp"/>
+                   <Button
+                       android:id="@+id/btnSelectCompany"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:text="Xác nhận"
+                       android:layout_marginLeft="20dp"
+                       android:background="@drawable/custom_btn_dialog"
+                       android:textColor="@color/white"
+                       android:textAllCaps="false"
+                       android:paddingRight="30dp"
+                       android:paddingLeft="30dp"
+                       android:onClick="@{() -> updateCompanyViewModel.onClickComfirm()}"/>
+               </LinearLayout>
+
+           </RelativeLayout>
+       </LinearLayout>
+</layout>

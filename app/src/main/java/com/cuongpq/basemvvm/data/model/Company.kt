@@ -6,6 +6,7 @@ import androidx.room.PrimaryKey
 import java.io.Serializable
 
 data class Company(
+    var idCompany : Int = 0,
     var companyName: String = "",
     var companyAvatar: String = "",
     var companyAdress: String = ""

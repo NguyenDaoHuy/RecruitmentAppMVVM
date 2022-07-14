@@ -5,7 +5,7 @@ import com.cuongpq.basemvvm.R
 import com.cuongpq.basemvvm.ui.base.AnimationScreen
 import com.cuongpq.basemvvm.ui.base.fragment.BaseFragment
 import com.cuongpq.basemvvm.ui.login.signup.RegisterFragment
-import com.cuongpq.basemvvm.ui.main.user.UserFragment
+import com.cuongpq.basemvvm.ui.xample.user.UserFragment
 //******************************
 //******************************
 //***** Create by cuongpq  *****

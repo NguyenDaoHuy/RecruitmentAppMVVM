@@ -5,7 +5,7 @@ import com.cuongpq.basemvvm.R
 import com.cuongpq.basemvvm.data.model.User
 import com.cuongpq.basemvvm.databinding.ActivityEmployerMainBinding
 import com.cuongpq.basemvvm.ui.base.activity.BaseMVVMActivity
-import com.cuongpq.basemvvm.ui.employer.myjob.MyJobFragment
+import com.cuongpq.basemvvm.ui.employer.job.my_job.MyJobFragment
 import com.cuongpq.basemvvm.ui.noticification.NoticificationFragment
 import com.cuongpq.basemvvm.ui.profile.ProfileFragment
 
@@ -25,7 +25,7 @@ class EmployerMainActivity : BaseMVVMActivity<EmployerMainCallBack,EmployerMainV
     override fun initComponents() {
         user = intent.getSerializableExtra("user") as User?
         getBindingData().employerMainViewModel = mModel
-        getFragmet(MyJobFragment())
+        getFragmet(MyJobFragment(user))
         onClickMenu()
     }
 
@@ -59,15 +59,11 @@ class EmployerMainActivity : BaseMVVMActivity<EmployerMainCallBack,EmployerMainV
         getBindingData().bottomNav.setOnNavigationItemSelectedListener { item ->
             when(item.itemId){
                 R.id.myJobFragment -> {
-                    getFragmet(MyJobFragment())
+                    getFragmet(MyJobFragment(user))
                     return@setOnNavigationItemSelectedListener true
                 }
                 R.id.profileFragment -> {
                     getFragmet(ProfileFragment(user))
-                    return@setOnNavigationItemSelectedListener true
-                }
-                R.id.notificationFragment -> {
-                    getFragmet(NoticificationFragment())
                     return@setOnNavigationItemSelectedListener true
                 }
             }

@@ -77,7 +77,7 @@ class RegisterFragment : BaseMvvmFragment<RegisterCallBack, RegisterViewModel>()
                mModel.age = age
                mModel.phone = phone
                mModel.permission = permission
-               mModel.onRegister()
+               mModel.onRegister(activity!!)
            }
 
     }

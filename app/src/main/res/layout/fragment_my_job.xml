@@ -5,7 +5,7 @@
     <data>
          <variable
              name="myJobViewModel"
-             type="com.cuongpq.basemvvm.ui.employer.myjob.MyJobViewModel" />
+             type="com.cuongpq.basemvvm.ui.employer.job.my_job.MyJobViewModel" />
         <import type="android.view.View"/>
     </data>
     <RelativeLayout
@@ -26,17 +26,18 @@
                 android:layout_marginLeft="10dp"
                 android:fontFamily="sans-serif"
                 android:text="Danh sách công việc "
-                android:textColor="@color/white"
                 android:textSize="18dp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:textColor="@color/white"/>
         </RelativeLayout>
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rcvListMyJob"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_below="@+id/header"
-            android:padding="10dp"
-            android:layout_marginBottom="100dp"/>
+            android:layout_marginBottom="100dp"
+            android:padding="10dp" />
 
         <Button
             android:id="@+id/btnAddJob"

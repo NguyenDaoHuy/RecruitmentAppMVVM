@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+         <variable
+             name="createRequestViewModel"
+             type="com.cuongpq.basemvvm.ui.employer.create_job.create_request.CreateRequestViewModel" />
+         <import type="android.view.View"/>
+    </data>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/color_main">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="60dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:text="Yêu cầu với ứng viên"
+                    android:textColor="#EDA441"
+                    android:textSize="22dp"
+                    android:textStyle="bold" />
+            </RelativeLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/custom_box_create_request"
+                android:layout_marginRight="15dp"
+                android:layout_marginLeft="15dp"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Kỹ năng"
+                    android:layout_gravity="center"
+                    android:textColor="@color/black"
+                    android:textSize="16dp"
+                    android:textStyle="bold"
+                    android:layout_margin="10dp"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp">
+                    <EditText
+                        android:id="@+id/edExperience"
+                        android:layout_width="0dp"
+                        android:layout_height="50dp"
+                        android:layout_weight="8.5"
+                        android:hint="Nhập kỹ năng"/>
+                    <Button
+                        android:id="@+id/btnAddExperience"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_weight="1.5"
+                        android:text="Thêm"
+                        android:textAllCaps="false"
+                        android:background="@drawable/custom_button_signout_4"
+                        android:layout_marginLeft="5dp"
+                        android:textColor="@color/white"
+                        android:onClick="@{() -> createRequestViewModel.onClickAddExperience()}"/>
+                </LinearLayout>
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rcvExperience"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/custom_box_create_request"
+                android:layout_marginRight="15dp"
+                android:layout_marginLeft="15dp"
+                android:orientation="vertical"
+                android:layout_marginTop="30dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Học vấn"
+                    android:layout_gravity="center"
+                    android:textColor="@color/black"
+                    android:textSize="16dp"
+                    android:textStyle="bold"
+                    android:layout_margin="10dp"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp">
+                    <EditText
+                        android:id="@+id/edEducation"
+                        android:layout_width="0dp"
+                        android:layout_height="50dp"
+                        android:layout_weight="8.5"
+                        android:hint="Nhập học vấn"/>
+                    <Button
+                        android:id="@+id/btnAddEducation"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_weight="1.5"
+                        android:text="Thêm"
+                        android:textAllCaps="false"
+                        android:background="@drawable/custom_button_signout_4"
+                        android:layout_marginLeft="5dp"
+                        android:textColor="@color/white"
+                        android:onClick="@{() -> createRequestViewModel.onClickAddEducation()}"/>
+                </LinearLayout>
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rcvEducation"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/custom_box_create_request"
+                android:layout_marginRight="15dp"
+                android:layout_marginLeft="15dp"
+                android:orientation="vertical"
+                android:layout_marginTop="30dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Chứng chỉ"
+                    android:layout_gravity="center"
+                    android:textColor="@color/black"
+                    android:textSize="16dp"
+                    android:textStyle="bold"
+                    android:layout_margin="10dp"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp">
+                    <EditText
+                        android:id="@+id/edCertification"
+                        android:layout_width="0dp"
+                        android:layout_height="50dp"
+                        android:layout_weight="8.5"
+                        android:hint="Nhập chứng chỉ"/>
+                    <Button
+                        android:id="@+id/btnAddCetification"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_weight="1.5"
+                        android:text="Thêm"
+                        android:textAllCaps="false"
+                        android:background="@drawable/custom_button_signout_4"
+                        android:layout_marginLeft="5dp"
+                        android:textColor="@color/white"
+                        android:onClick="@{() -> createRequestViewModel.onClickAddCertification()}"/>
+                </LinearLayout>
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/revCertification"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/custom_box_create_request"
+                android:layout_marginRight="15dp"
+                android:layout_marginLeft="15dp"
+                android:orientation="vertical"
+                android:layout_marginTop="30dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Ngôn ngữ"
+                    android:layout_gravity="center"
+                    android:textColor="@color/black"
+                    android:textSize="16dp"
+                    android:textStyle="bold"
+                    android:layout_margin="10dp"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp">
+                    <EditText
+                        android:id="@+id/edLanguage"
+                        android:layout_width="0dp"
+                        android:layout_height="50dp"
+                        android:layout_weight="8.5"
+                        android:hint="Nhập ngôn ngữ"/>
+                    <Button
+                        android:id="@+id/btnAddLanguage"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_weight="1.5"
+                        android:text="Thêm"
+                        android:textAllCaps="false"
+                        android:background="@drawable/custom_button_signout_4"
+                        android:layout_marginLeft="5dp"
+                        android:textColor="@color/white"
+                        android:onClick="@{() -> createRequestViewModel.onClickAddLanguage()}"/>
+                </LinearLayout>
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rcvLanguage"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"/>
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btnAdd"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="30dp"
+                android:background="@drawable/custom_button_register"
+                android:fontFamily="sans-serif"
+                android:text="Tiếp theo"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="16dp"
+                android:textStyle="bold"
+                android:onClick="@{() -> createRequestViewModel.onClickNext()}"/>
+        </LinearLayout>
+    </ScrollView>
+
+</layout>

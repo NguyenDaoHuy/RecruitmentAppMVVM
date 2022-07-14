@@ -12,11 +12,12 @@
         android:layout_marginTop="4dp"
         android:layout_marginBottom="4dp"
         android:paddingRight="16dp"
-        android:layout_height="60dp">
+        android:layout_height="60dp"
+        android:background="@drawable/custom_box_create_request">
         <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/avtCompany"
             android:layout_width="60dp"
             android:layout_height="48dp"
-            android:id="@+id/iv_user_avatar"
             android:src="@drawable/logo_bacha"
             android:layout_gravity="center"/>
         <LinearLayout
@@ -26,20 +27,45 @@
             android:layout_marginStart="16dp"
             android:layout_height="wrap_content">
             <TextView
+                android:id="@+id/jobName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Android Developer"
                 android:textSize="16sp"
                 android:textColor="@color/black"
-                android:textStyle="bold"
-                android:id="@+id/tv_name"/>
+                android:textStyle="bold" />
             <TextView
+                android:id="@+id/companyName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="BacHa Software"
-                android:id="@+id/tv_email"
                 android:textSize="12sp"
                 android:textColor="#191818"/>
         </LinearLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true">
+                <ImageView
+                    android:id="@+id/imgPower"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_power_on"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="20dp"/>
+                <ImageView
+                    android:id="@+id/btnDeleteJob"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_delete_x"
+                    android:layout_toEndOf="@+id/imgPower"
+                    android:layout_centerVertical="true"/>
+            </RelativeLayout>
+
+        </RelativeLayout>
     </LinearLayout>
 </layout>

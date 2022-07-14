@@ -14,28 +14,42 @@
         <entry key="..\:/CongTy/basemvvm-main/BaseMVVM/app/src/main/res/drawable-mdpi/image_checkbox.xml" value="0.166" />
         <entry key="..\:/CongTy/basemvvm-main/BaseMVVM/app/src/main/res/drawable-xxhdpi/icon_login_name.xml" value="0.2665" />
         <entry key="..\:/CongTy/basemvvm-main/BaseMVVM/app/src/main/res/drawable-xxxhdpi/round_back_while_stroke_1000.xml" value="0.1945" />
+        <entry key="..\:/CongTy/basemvvm-main/BaseMVVM/app/src/main/res/drawable/custom_box_create_request.xml" value="0.1205" />
         <entry key="..\:/CongTy/basemvvm-main/BaseMVVM/app/src/main/res/drawable/custom_edittext_addjob.xml" value="0.184" />
+        <entry key="..\:/CongTy/basemvvm-main/BaseMVVM/app/src/main/res/drawable/custom_search_view.xml" value="0.183" />
+        <entry key="..\:/CongTy/basemvvm-main/BaseMVVM/app/src/main/res/drawable/ic_cham_dau_dong.xml" value="0.1565" />
         <entry key="..\:/CongTy/basemvvm-main/BaseMVVM/app/src/main/res/drawable/profile_custom_avatar.xml" value="0.2265" />
         <entry key="..\:/CongTy/basemvvm-main/BaseMVVM/app/src/main/res/layout/activity_candidate.xml" value="0.2" />
         <entry key="..\:/CongTy/basemvvm-main/BaseMVVM/app/src/main/res/layout/activity_employer_main.xml" value="0.2" />
         <entry key="..\:/CongTy/basemvvm-main/BaseMVVM/app/src/main/res/layout/activity_first.xml" value="0.25" />
         <entry key="..\:/CongTy/basemvvm-main/BaseMVVM/app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="..\:/CongTy/basemvvm-main/BaseMVVM/app/src/main/res/layout/custom_spinner_company.xml" value="0.2" />
         <entry key="..\:/CongTy/basemvvm-main/BaseMVVM/app/src/main/res/layout/dialog_confirm.xml" value="0.25" />
         <entry key="..\:/CongTy/basemvvm-main/BaseMVVM/app/src/main/res/layout/fragment_add_job.xml" value="0.25" />
-        <entry key="..\:/CongTy/basemvvm-main/BaseMVVM/app/src/main/res/layout/fragment_job_information.xml" value="0.33" />
+        <entry key="..\:/CongTy/basemvvm-main/BaseMVVM/app/src/main/res/layout/fragment_answer.xml" value="0.2" />
+        <entry key="..\:/CongTy/basemvvm-main/BaseMVVM/app/src/main/res/layout/fragment_create_question.xml" value="0.144" />
+        <entry key="..\:/CongTy/basemvvm-main/BaseMVVM/app/src/main/res/layout/fragment_create_request.xml" value="0.2" />
+        <entry key="..\:/CongTy/basemvvm-main/BaseMVVM/app/src/main/res/layout/fragment_create_right.xml" value="0.2" />
+        <entry key="..\:/CongTy/basemvvm-main/BaseMVVM/app/src/main/res/layout/fragment_job_information.xml" value="0.25" />
+        <entry key="..\:/CongTy/basemvvm-main/BaseMVVM/app/src/main/res/layout/fragment_job_information2.xml" value="0.3625" />
+        <entry key="..\:/CongTy/basemvvm-main/BaseMVVM/app/src/main/res/layout/fragment_list_job_search.xml" value="0.25" />
         <entry key="..\:/CongTy/basemvvm-main/BaseMVVM/app/src/main/res/layout/fragment_login.xml" value="0.2" />
         <entry key="..\:/CongTy/basemvvm-main/BaseMVVM/app/src/main/res/layout/fragment_my_job.xml" value="0.2572463768115942" />
         <entry key="..\:/CongTy/basemvvm-main/BaseMVVM/app/src/main/res/layout/fragment_noticification.xml" value="0.21603260869565216" />
         <entry key="..\:/CongTy/basemvvm-main/BaseMVVM/app/src/main/res/layout/fragment_profile.xml" value="0.22" />
         <entry key="..\:/CongTy/basemvvm-main/BaseMVVM/app/src/main/res/layout/fragment_register.xml" value="0.20754716981132076" />
+        <entry key="..\:/CongTy/basemvvm-main/BaseMVVM/app/src/main/res/layout/fragment_set_status_job.xml" value="0.2427536231884058" />
         <entry key="..\:/CongTy/basemvvm-main/BaseMVVM/app/src/main/res/layout/fragment_signout_fragamt.xml" value="0.3484375" />
-        <entry key="..\:/CongTy/basemvvm-main/BaseMVVM/app/src/main/res/layout/fragment_update_skill.xml" value="0.25" />
+        <entry key="..\:/CongTy/basemvvm-main/BaseMVVM/app/src/main/res/layout/fragment_update_company.xml" value="0.176" />
+        <entry key="..\:/CongTy/basemvvm-main/BaseMVVM/app/src/main/res/layout/fragment_update_skill.xml" value="0.1" />
         <entry key="..\:/CongTy/basemvvm-main/BaseMVVM/app/src/main/res/layout/fragment_user.xml" value="0.25" />
-        <entry key="..\:/CongTy/basemvvm-main/BaseMVVM/app/src/main/res/layout/item_job.xml" value="0.33" />
+        <entry key="..\:/CongTy/basemvvm-main/BaseMVVM/app/src/main/res/layout/item_answer_to_request.xml" value="0.25" />
+        <entry key="..\:/CongTy/basemvvm-main/BaseMVVM/app/src/main/res/layout/item_job.xml" value="0.25" />
+        <entry key="..\:/CongTy/basemvvm-main/BaseMVVM/app/src/main/res/layout/item_skill.xml" value="0.24895833333333334" />
         <entry key="..\:/CongTy/basemvvm-main/BaseMVVM/app/src/main/res/layout/item_user.xml" value="0.25" />
         <entry key="..\:/CongTy/basemvvm-main/BaseMVVM/app/src/main/res/layout/layout_loading.xml" value="0.4" />
         <entry key="..\:/CongTy/basemvvm-main/BaseMVVM/app/src/main/res/layout/rate_us_dialog_layout.xml" value="0.22" />
-        <entry key="..\:/CongTy/basemvvm-main/BaseMVVM/app/src/main/res/menu/menu_bottom_nav.xml" value="0.3625" />
+        <entry key="..\:/CongTy/basemvvm-main/BaseMVVM/app/src/main/res/menu/menu_bottom_nav.xml" value="0.1" />
         <entry key="..\:/CongTy/basemvvm-main/BaseMVVM/app/src/main/res/menu/menu_bottom_nav_candidate.xml" value="0.3625" />
         <entry key="..\:/Project/BaseMVVM/app/src/main/res/layout/activity_main.xml" value="0.17604166666666668" />
         <entry key="..\:/Project/BaseMVVM/app/src/main/res/layout/dialog_confirm.xml" value="0.2" />

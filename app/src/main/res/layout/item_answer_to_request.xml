@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/tvQuestion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Em có người yêu chưa ?"
+            android:textColor="@color/black"
+            android:textSize="20dp"
+            android:paddingLeft="15dp"
+            android:textStyle="bold" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:background="@drawable/custom_input_login"
+            android:fontFamily="sans-serif">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edAnswer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:layout_marginTop="5dp"
+                android:textColor="@color/black"
+                android:lines="5"
+                android:gravity="top"
+                android:hint="Nhập câu trả lời ..."
+                android:textSize="20dp"
+                android:fontFamily="sans-serif" />
+        </com.google.android.material.textfield.TextInputLayout>
+    </LinearLayout>
+</layout>

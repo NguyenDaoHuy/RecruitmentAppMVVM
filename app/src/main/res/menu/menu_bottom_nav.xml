@@ -6,7 +6,4 @@
     <item android:id="@+id/profileFragment"
         android:title="Cá nhân"
         android:icon="@drawable/icon_menu_user"/>
-    <item android:id="@+id/notificationFragment"
-        android:title="Thông báo"
-        android:icon="@drawable/icon_menu_notification"/>
 </menu>
