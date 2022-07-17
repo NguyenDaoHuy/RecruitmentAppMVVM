@@ -39,13 +39,13 @@ class RegisterFragment : BaseMvvmFragment<RegisterCallBack, RegisterViewModel>()
         return R.layout.fragment_register
     }
 
-    fun onClickRegister(){
+    private fun onClickRegister(){
            dialog.show()
            email = getBindingData().edAccount.text.toString().trim()
            password = getBindingData().edPassword .text.toString().trim()
            passwordCF = getBindingData().cfPassword .text.toString().trim()
            userName = getBindingData().edUserName .text.toString().trim()
-           var strAge = getBindingData().edAge .text.toString().trim()
+           val strAge = getBindingData().edAge .text.toString().trim()
            phone =  getBindingData().edPhone .text.toString().trim()
            if(getBindingData().rdEmployer.isChecked){
                permission = 0
@@ -60,15 +60,15 @@ class RegisterFragment : BaseMvvmFragment<RegisterCallBack, RegisterViewModel>()
                phone.isEmpty()){
                dialog.dismiss()
                getBindingData().tvThongBaoDangKi.text = "Vui lòng nhập đủ thông tin"
-               return;
+               return
            }else if(password.length < 6){
                dialog.dismiss()
                getBindingData().tvThongBaoDangKi.text = "Mật khẩu phải hơn 6 kí tự"
-               return;
-           }else if(password.equals(passwordCF) == false){
+               return
+           }else if(password != passwordCF){
                dialog.dismiss()
                getBindingData().tvThongBaoDangKi.text = "Mật khẩu không khớp"
-               return;
+               return
            }else{
                age = strAge.toInt()
                mModel.email = email
@@ -92,7 +92,7 @@ class RegisterFragment : BaseMvvmFragment<RegisterCallBack, RegisterViewModel>()
         showMessage("Đăng kí không thành công !")
     }
 
-    fun onBackToLoginFragment(){
+    private fun onBackToLoginFragment(){
         requireActivity().supportFragmentManager.popBackStack()
     }
 

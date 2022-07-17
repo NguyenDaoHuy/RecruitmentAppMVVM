@@ -19,14 +19,16 @@ class CreateQuestionViewModel  @Inject constructor(
     private var edQuestion : String? = null
     private lateinit var sqLiteHelper : SQLiteHelper
     private var questionList : ArrayList<Question>? = null
-    init {
 
-    }
     companion object{
-        val ADD_QUESTION = 1
-        val ADD_QUESTION_SUCCESS = 2
-        val DELETE_QUESTION_SUCCESS = 3
-        val ON_CLICK_NEXT_TO_RIGHT = 4
+        const val ADD_QUESTION = 1
+        const val ADD_QUESTION_SUCCESS = 2
+        const val DELETE_QUESTION_SUCCESS = 3
+        const val ON_CLICK_NEXT_TO_RIGHT = 4
+        const val ON_CLICK_UPDATE_QUESTION = 5
+    }
+    fun onClickUpdateQuestion(){
+        uiEventLiveData.value = ON_CLICK_UPDATE_QUESTION
     }
     fun onClickNext(){
         uiEventLiveData.value = ON_CLICK_NEXT_TO_RIGHT

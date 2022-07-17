@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/custom_xacnhan_hoadon"
+    android:layout_margin="20dp"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="12dp"
+        android:textColor="@color/white"
+        android:textSize="16dp"
+        android:gravity="center"
+        android:background="@drawable/custom_dang_ki_thanhcong"
+        android:text="Thông báo"
+        android:textStyle="bold"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:drawablePadding="10dp"
+            android:padding="12dp"
+            android:text="Bạn cần trả phí để sử dụng dịch vụ này !"
+            android:textColor="@color/black"
+            android:textSize="20dp"
+            android:fontFamily="sans-serif-condensed-medium"/>
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="center">
+        <Button
+            android:id="@+id/btnTrial30Days"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:text="Dùng thử 30 ngày "
+            android:textAllCaps="false"
+            android:background="#A69595"
+            android:textColor="@color/white"
+            android:padding="12dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="20dp"/>
+        <Button
+            android:id="@+id/btnBuy"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:text="Trả phí "
+            android:textAllCaps="false"
+            android:background="#D33E3E"
+            android:textColor="@color/white"
+            android:padding="12dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginBottom="20dp"/>
+    </LinearLayout>
+</LinearLayout>

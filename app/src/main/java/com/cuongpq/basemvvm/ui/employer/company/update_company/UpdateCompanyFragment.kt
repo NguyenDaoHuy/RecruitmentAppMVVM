@@ -1,4 +1,4 @@
-package com.cuongpq.basemvvm.ui.employer.update_company
+package com.cuongpq.basemvvm.ui.employer.company.update_company
 
 import android.view.View
 import android.widget.AdapterView
@@ -9,9 +9,10 @@ import com.cuongpq.basemvvm.data.model.User
 import com.cuongpq.basemvvm.databinding.FragmentUpdateCompanyBinding
 import com.cuongpq.basemvvm.ui.base.fragment.BaseMvvmFragment
 import com.cuongpq.basemvvm.ui.base.viewmodel.BaseViewModel
-import com.cuongpq.basemvvm.ui.profile.update_skill.UpdateSkillFragment
+import com.cuongpq.basemvvm.ui.employer.company.create_company.CreateCompanyFragment
 
-class UpdateCompanyFragment(var user : User?) : BaseMvvmFragment<UpdateCompanyCallBack,UpdateCompanyViewModel>(), UpdateCompanyCallBack{
+class UpdateCompanyFragment(var user : User?) : BaseMvvmFragment<UpdateCompanyCallBack, UpdateCompanyViewModel>(),
+    UpdateCompanyCallBack {
 
 //    private var companyArrayList : ArrayList<Company>? = null
     private var companyAdapter : CompanyAdapter? = null
@@ -23,6 +24,7 @@ class UpdateCompanyFragment(var user : User?) : BaseMvvmFragment<UpdateCompanyCa
                 BaseViewModel.FINISH_ACTIVITY -> finishActivity()
                 UpdateCompanyViewModel.COMPANY_COMFIRM -> onComfirm()
                 UpdateCompanyViewModel.SET_COMPANY -> setCompanySuccess()
+                UpdateCompanyViewModel.ON_CLICK_CREATE_COMPANY -> onClickCreateCompany()
             }
         }
         getData()
@@ -31,23 +33,28 @@ class UpdateCompanyFragment(var user : User?) : BaseMvvmFragment<UpdateCompanyCa
     fun getData(){
         mModel.getDataCompanyFromDatabase(requireActivity())
         companyAdapter = CompanyAdapter(requireContext(),mModel.getCompanyArrayList())
-        getBindingData().spinerCompany.setAdapter(companyAdapter)
+        getBindingData().spinerCompany.adapter = companyAdapter
         getBindingData().spinerCompany.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, p3: Long) {
                 company = parent!!.getItemAtPosition(position) as Company?
-                Toast.makeText(requireContext(),company!!.companyName,Toast.LENGTH_SHORT).show()
             }
             override fun onNothingSelected(p0: AdapterView<*>?) {
 
             }
         }
     }
-    fun onComfirm(){
+    private fun onComfirm(){
          mModel.setCompany(company!!,requireActivity(), user!!)
     }
-    fun setCompanySuccess(){
+    private fun setCompanySuccess(){
          requireActivity().supportFragmentManager.popBackStack()
          Toast.makeText(context,"Cập nhập thành công",Toast.LENGTH_SHORT).show()
+    }
+    private fun onClickCreateCompany(){
+        val fragmentTransaction = requireActivity().supportFragmentManager.beginTransaction()
+        fragmentTransaction.replace(R.id.fragmentMain,CreateCompanyFragment())
+        fragmentTransaction.addToBackStack(CreateCompanyFragment.TAG)
+        fragmentTransaction.commit()
     }
 
     override fun getLayoutMain(): Int {

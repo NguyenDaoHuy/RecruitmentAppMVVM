@@ -1,15 +1,13 @@
 package com.cuongpq.basemvvm.ui.candidate
 
-import android.widget.Toast
+
 import androidx.fragment.app.Fragment
 import com.cuongpq.basemvvm.R
 import com.cuongpq.basemvvm.data.model.User
 import com.cuongpq.basemvvm.databinding.ActivityCandidateBinding
 import com.cuongpq.basemvvm.ui.base.activity.BaseMVVMActivity
 import com.cuongpq.basemvvm.ui.candidate.list_job.ListJobSearchFragment
-import com.cuongpq.basemvvm.ui.employer.job.my_job.MyJobFragment
-import com.cuongpq.basemvvm.ui.noticification.NoticificationFragment
-import com.cuongpq.basemvvm.ui.profile.ProfileFragment
+import com.cuongpq.basemvvm.ui.account.ProfileFragment
 
 class CandidateMainActivity : BaseMVVMActivity<CandidateMainCallBack,CandidateMainModelView>(),CandidateMainCallBack {
 
@@ -45,7 +43,7 @@ class CandidateMainActivity : BaseMVVMActivity<CandidateMainCallBack,CandidateMa
 //            System.exit(0)
 //            return
 //        } else {
-//            Toast.makeText(this, "Nhấn 2 lần liên tiếp để thoát app", Toast.LENGTH_SHORT).show()
+//            Toast.makeText(this, "Nhấn 2 lần liên tiếp để throat app", Toast.LENGTH_SHORT).show()
 //        }
 //        backPressTime = System.currentTimeMillis()
 //    }
@@ -65,8 +63,8 @@ class CandidateMainActivity : BaseMVVMActivity<CandidateMainCallBack,CandidateMa
         }
     }
     private fun getFragmet(fragment: Fragment){
-        var fragmentManager = supportFragmentManager
-        var fragmentTransaction = fragmentManager.beginTransaction()
+        val fragmentManager = supportFragmentManager
+        val fragmentTransaction = fragmentManager.beginTransaction()
         fragmentTransaction.replace(R.id.fragmentMain2,fragment)
         fragmentTransaction.commit()
     }

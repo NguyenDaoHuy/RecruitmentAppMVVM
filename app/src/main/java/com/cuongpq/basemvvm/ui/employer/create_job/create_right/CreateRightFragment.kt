@@ -2,12 +2,13 @@ package com.cuongpq.basemvvm.ui.employer.create_job.create_right
 
 import android.widget.Toast
 import com.cuongpq.basemvvm.R
+import com.cuongpq.basemvvm.data.model.User
 import com.cuongpq.basemvvm.databinding.FragmentCreateRightBinding
 import com.cuongpq.basemvvm.ui.base.fragment.BaseMvvmFragment
 import com.cuongpq.basemvvm.ui.base.viewmodel.BaseViewModel
 import com.cuongpq.basemvvm.ui.employer.create_job.create_status.CreateStatusFragment
 
-class CreateRightFragment(var idJob : String?)  : BaseMvvmFragment<CreateRightCallBack,CreateRightViewModel>(),CreateRightCallBack {
+class CreateRightFragment(var idJob : String?,private var user: User?)  : BaseMvvmFragment<CreateRightCallBack,CreateRightViewModel>(),CreateRightCallBack {
 
     private var edRight : String? = null
     private var edAmount : Int = 0
@@ -50,10 +51,9 @@ class CreateRightFragment(var idJob : String?)  : BaseMvvmFragment<CreateRightCa
            mModel.setRightAndAmount(edRight!!,edAmount,requireContext())
        }
     }
-    fun onAddRightSuccess(){
-        Toast.makeText(context,"Thành công",Toast.LENGTH_SHORT).show()
+    private fun onAddRightSuccess(){
         val fragmentTransaction = requireFragmentManager().beginTransaction()
-        fragmentTransaction.replace(R.id.fragmentMain, CreateStatusFragment(idJob))
+        fragmentTransaction.replace(R.id.fragmentMain, CreateStatusFragment(idJob,user))
         fragmentTransaction.addToBackStack(CreateStatusFragment.TAG)
         fragmentTransaction.commit()
     }

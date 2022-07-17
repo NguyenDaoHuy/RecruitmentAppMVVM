@@ -1,9 +1,8 @@
 package com.cuongpq.basemvvm.ui.candidate.list_job
 
+import android.annotation.SuppressLint
 import android.os.Bundle
-import android.widget.Toast
 import androidx.appcompat.widget.SearchView
-import androidx.compose.ui.text.toLowerCase
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.cuongpq.basemvvm.R
 import com.cuongpq.basemvvm.data.model.User
@@ -15,25 +14,25 @@ import com.cuongpq.basemvvm.ui.employer.job.my_job.JobAdapter
 
 class ListJobSearchFragment(var user: User?) : BaseMvvmFragment<ListJobCallBack,ListJobSearchViewModel>(),ListJobCallBack,JobAdapter.IJob {
 
-    private var filterList : ArrayList<Job>? = null
-    private var jobList : ArrayList<Job>? = null
-
     override fun initComponents() {
         getBindingData().listJobSearchViewModel = mModel
         getBindingData().searchView.clearFocus()
-        mModel.getJobSearchDataFromDB(requireContext())
+        mModel.getJobSearchDataFromDB(requireContext(),"")
         initRecyclerViewoJob()
         onSearch()
     }
 
-    fun onSearch(){
+    // HÀM SEARCH
+    private fun onSearch(){
         getBindingData().searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean {
                 return false
             }
 
+            @SuppressLint("NotifyDataSetChanged")
             override fun onQueryTextChange(newText: String): Boolean {
-                filterList(newText)
+                mModel.getJobSearchDataFromDB(requireContext(),newText)
+                getBindingData().rcvListJob.adapter!!.notifyDataSetChanged();
                 return false
             }
         })
@@ -60,24 +59,22 @@ class ListJobSearchFragment(var user: User?) : BaseMvvmFragment<ListJobCallBack,
         val TAG = ListJobSearchFragment::class.java.name
     }
 
-    fun initRecyclerViewoJob(){
+    private fun initRecyclerViewoJob(){
         val jobAdapter = JobAdapter(this, requireContext(),user!!)
         getBindingData().rcvListJob.layoutManager = LinearLayoutManager(context)
-        getBindingData().rcvListJob.setAdapter(jobAdapter)
+        getBindingData().rcvListJob.adapter = jobAdapter
     }
 
     override fun count(): Int {
-        jobList = mModel.getListJobSearch()
-        return jobList!!.size
+        return mModel.getListJobSearch().size
     }
 
     override fun getJob(position: Int): Job {
-        jobList = mModel.getListJobSearch()
-        return jobList!!.get(position)
+        return mModel.getListJobSearch()[position]
     }
 
     override fun onClickJob(position: Int) {
-        val job = mModel.getListJobSearch().get(position)
+        val job = mModel.getListJobSearch()[position]
         val jobInformationFragment = JobInformationFragment(user!!)
         val bundle = Bundle()
         bundle.putSerializable("job",job)
@@ -94,20 +91,6 @@ class ListJobSearchFragment(var user: User?) : BaseMvvmFragment<ListJobCallBack,
 
     override fun onClickDelete(position: Int) {
 
-    }
-    private fun filterList(text : String){
-        filterList = ArrayList()
-        for (job in mModel.getListJobSearch()){
-            if(job.jobName.toLowerCase().contains(text.toLowerCase())){
-                filterList!!.add(job)
-            }
-        }
-        if(filterList!!.isEmpty()){
-            Toast.makeText(context,"Không có dữ liệu",Toast.LENGTH_SHORT).show()
-        }else{
-             jobList = filterList
-             getBindingData().rcvListJob.adapter!!.notifyDataSetChanged()
-        }
     }
 
 }

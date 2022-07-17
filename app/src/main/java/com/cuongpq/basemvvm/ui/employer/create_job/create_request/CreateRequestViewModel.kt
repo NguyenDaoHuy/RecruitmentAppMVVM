@@ -23,23 +23,21 @@ class CreateRequestViewModel @Inject constructor(
     private var languageList : ArrayList<Skill>? = null
 
     companion object{
-        val ADD_EXPERIENCE = 1
-        val ADD_EDUCATION = 2
-        val ADD_CERTIFICATION = 3
-        val ADD_LANGUAGE = 4
-        val ADD_EXPERIENCE_SUCCESS = 5
-        val ADD_EDUCATION_SUCCESS = 6
-        val ADD_CERTIFICATION_SUCCESS = 7
-        val ADD_LANGUAGE_SUCCESS = 8
-        val DELETE_EXPERIENCE_SUCCESS = 9
-        val DELETE_EDUCATION_SUCCESS = 10
-        val DELETE_CERTIFICATION_SUCCESS = 11
-        val DELETE_LANGUAGE_SUCCESS = 12
-        val CLICK_NEXT = 13
+        const val ADD_EXPERIENCE = 1
+        const val ADD_EDUCATION = 2
+        const val ADD_CERTIFICATION = 3
+        const val ADD_LANGUAGE = 4
+        const val ADD_EXPERIENCE_SUCCESS = 5
+        const val ADD_EDUCATION_SUCCESS = 6
+        const val ADD_CERTIFICATION_SUCCESS = 7
+        const val ADD_LANGUAGE_SUCCESS = 8
+        const val DELETE_EXPERIENCE_SUCCESS = 9
+        const val DELETE_EDUCATION_SUCCESS = 10
+        const val DELETE_CERTIFICATION_SUCCESS = 11
+        const val DELETE_LANGUAGE_SUCCESS = 12
+        const val CLICK_NEXT = 13
     }
-    init {
 
-    }
     fun onClickNext(){
         uiEventLiveData.value = CLICK_NEXT
     }

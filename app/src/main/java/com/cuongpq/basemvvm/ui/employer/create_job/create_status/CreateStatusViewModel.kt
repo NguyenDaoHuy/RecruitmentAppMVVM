@@ -17,12 +17,8 @@ class CreateStatusViewModel @Inject constructor(
     lateinit var idJob : String
 
     companion object{
-        val CLICK_DONE = 1
-        val SET_STATUS_SUCCESS =2
-    }
-
-    init {
-
+        const val CLICK_DONE = 1
+        const val SET_STATUS_SUCCESS =2
     }
 
     fun onClickDone(){

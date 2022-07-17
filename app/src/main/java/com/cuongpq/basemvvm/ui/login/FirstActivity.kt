@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import com.cuongpq.basemvvm.R
 import com.cuongpq.basemvvm.data.sqlite.SQLiteHelper
 import com.cuongpq.basemvvm.databinding.ActivityFirstBinding
+
 import com.cuongpq.basemvvm.ui.base.activity.BaseMVVMActivity
 import com.cuongpq.basemvvm.ui.login.signin.LoginFragment
 
@@ -75,6 +76,18 @@ class FirstActivity : BaseMVVMActivity<FirstCallBack,FirstViewModel>(),FirstCall
                     "name NVARCHAR(100)," +
                     "type INTEGER," +
                     "IdAccount NVARCHAR(30))"
+        )
+        sqLiteHelper!!.QueryData(
+            "CREATE TABLE IF NOT EXISTS Apply(Id INTEGER PRIMARY KEY AUTOINCREMENT," +
+                    "IdCandidate NVARCHAR(100)," +
+                    "IdJob INTEGER," +
+                    "IdEmployer NVARCHAR(100))"
+        )
+        sqLiteHelper!!.QueryData(
+            "CREATE TABLE IF NOT EXISTS Answer(Id INTEGER PRIMARY KEY AUTOINCREMENT," +
+                    "IdCandidate NVARCHAR(100)," +
+                    "IdQuestion INTEGER," +
+                    "content NVARCHAR(500))"
         )
     }
 

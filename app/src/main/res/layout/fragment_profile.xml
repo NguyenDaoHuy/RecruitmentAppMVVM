@@ -5,7 +5,7 @@
     <data>
          <variable
              name="profileViewModel"
-             type="com.cuongpq.basemvvm.ui.profile.ProfileViewModel" />
+             type="com.cuongpq.basemvvm.ui.account.ProfileViewModel" />
         <import type="android.view.View"/>
     </data>
     <LinearLayout
@@ -174,7 +174,8 @@
                 android:textSize="20dp"
                 android:paddingBottom="15dp"
                 android:textStyle="bold"
-                android:background="?attr/selectableItemBackground"/>
+                android:background="?attr/selectableItemBackground"
+                android:onClick="@{()->profileViewModel.onClickInformation()}"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"

@@ -12,6 +12,7 @@ import com.cuongpq.basemvvm.databinding.FragmentJobInformationBinding
 import com.cuongpq.basemvvm.ui.base.fragment.BaseMvvmFragment
 import com.cuongpq.basemvvm.ui.base.viewmodel.BaseViewModel
 import com.cuongpq.basemvvm.ui.candidate.answer.AnswerFragment
+import com.cuongpq.basemvvm.ui.employer.create_job.create_request.CreateRequestFragment
 import com.cuongpq.basemvvm.ui.employer.create_job.create_request.SkillAdapter
 
 class JobInformationFragment(val user: User) : BaseMvvmFragment<JobInformationCallBack, JobInformationViewModel>(),
@@ -31,6 +32,7 @@ class JobInformationFragment(val user: User) : BaseMvvmFragment<JobInformationCa
             when(it){
                 BaseViewModel.FINISH_ACTIVITY -> finishActivity()
                 JobInformationViewModel.ON_CLICK_APPLY -> onClickApply()
+                JobInformationViewModel.ON_CLICK_UPDATE -> onClickUpdate()
             }
         }
         getListSkill()
@@ -41,26 +43,29 @@ class JobInformationFragment(val user: User) : BaseMvvmFragment<JobInformationCa
         initRecyclerViewLanguage()
     }
 
-    fun setView(){
-        getBindingData().jobName.setText(job.jobName)
-        getBindingData().jobDescription.setText(job.description)
-        getBindingData().companyName.setText(job.company!!.companyName)
+    private fun setView(){
+        getBindingData().jobName.text = job.jobName
+        getBindingData().jobDescription.text = job.description
+        getBindingData().companyName.text = job.company!!.companyName
         Glide.with(context!!).load(job.company!!.companyAvatar)
-            .placeholder(R.drawable.logo_bacha)
-            .error(R.drawable.logo_bacha)
+            .placeholder(R.drawable.img_company_load)
+            .error(R.drawable.img_company_false)
             .into(getBindingData().logoCompany)
-        getBindingData().jobRight.setText(job.right)
-        getBindingData().tvEmployName.setText("Anh / chị : " + job.employer!!.name)
-        getBindingData().tvEmployEmail.setText("Email : " + job.employer!!.email)
-        getBindingData().tvEmployPhone.setText("Số điện thoại : " + job.employer!!.phone)
+        getBindingData().jobRight.text = job.right
+        getBindingData().jobAmount.text = ""+job.amount
+        getBindingData().tvEmployName.text = "Anh / chị : " + job.employer!!.name
+        getBindingData().tvEmployEmail.text = "Email : " + job.employer!!.email
+        getBindingData().tvEmployPhone.text = "Số điện thoại : " + job.employer!!.phone
         if(user.permission == 0){
             getBindingData().btnApply.visibility = View.GONE
+            getBindingData().btnUpdate.visibility = View.VISIBLE
         }else if(user.permission == 1){
             getBindingData().btnApply.visibility = View.VISIBLE
+            getBindingData().btnUpdate.visibility = View.GONE
         }
     }
 
-    fun getListSkill(){
+    private fun getListSkill(){
         listSkill = ArrayList()
         listExperience = ArrayList()
         listEducation = ArrayList()
@@ -80,10 +85,17 @@ class JobInformationFragment(val user: User) : BaseMvvmFragment<JobInformationCa
         }
     }
 
-    fun onClickApply(){
+    private fun onClickApply(){
         val fragmentTransaction = requireFragmentManager().beginTransaction()
-        fragmentTransaction.replace(R.id.fragmentMain2, AnswerFragment(job))
+        fragmentTransaction.replace(R.id.fragmentMain2, AnswerFragment(job,user))
         fragmentTransaction.addToBackStack(AnswerFragment.TAG)
+        fragmentTransaction.commit()
+    }
+
+    private fun onClickUpdate(){
+        val fragmentTransaction = fragmentManager!!.beginTransaction()
+        fragmentTransaction.replace(R.id.fragmentMain, CreateRequestFragment(job.codeJob,user,2))
+        fragmentTransaction.addToBackStack(CreateRequestFragment.TAG)
         fragmentTransaction.commit()
     }
 
@@ -110,27 +122,15 @@ class JobInformationFragment(val user: User) : BaseMvvmFragment<JobInformationCa
     override fun count(type: Int): Int {
         when(type){
             1 -> {
-                if (listExperience == null){
-                    return 0
-                }
                 return listExperience.size
             }
             2 -> {
-                if (listEducation == null){
-                    return 0
-                }
                 return listEducation.size
             }
             3 -> {
-                if (listCertification == null){
-                    return 0
-                }
                 return listCertification.size
             }
             4 -> {
-                if (listLanguage == null){
-                    return 0
-                }
                 return listLanguage.size
             }
             else -> 0
@@ -141,43 +141,43 @@ class JobInformationFragment(val user: User) : BaseMvvmFragment<JobInformationCa
     override fun getSkill(position: Int, type: Int): Skill {
         when(type){
             1 -> {
-                return listExperience.get(position)
+                return listExperience[position]
             }
             2 -> {
-                return listEducation.get(position)
+                return listEducation[position]
             }
             3 -> {
-                return listCertification.get(position)
+                return listCertification[position]
             }
             4 -> {
-                return listLanguage.get(position)
+                return listLanguage[position]
             }
             else -> 0
         }
-        return listExperience.get(position)
+        return listExperience[position]
     }
 
     override fun onClickDeleteSkill(position: Int, type: Int) {
 
     }
-    fun initRecyclerViewExperience(){
+    private fun initRecyclerViewExperience(){
         val experienceAdapter = SkillAdapter(this,1,2)
         getBindingData().rcvInfoExperience.layoutManager = LinearLayoutManager(context)
-        getBindingData().rcvInfoExperience.setAdapter(experienceAdapter)
+        getBindingData().rcvInfoExperience.adapter = experienceAdapter
     }
-    fun initRecyclerViewEducation(){
+    private fun initRecyclerViewEducation(){
         val educationAdapter = SkillAdapter(this,2,2)
         getBindingData().rcvInfoEducation.layoutManager = LinearLayoutManager(context)
-        getBindingData().rcvInfoEducation.setAdapter(educationAdapter)
+        getBindingData().rcvInfoEducation.adapter = educationAdapter
     }
-    fun initRecyclerViewCertification(){
+    private fun initRecyclerViewCertification(){
         val certificationAdapter = SkillAdapter(this,3,2)
         getBindingData().rcvInfoCerticifation.layoutManager = LinearLayoutManager(context)
-        getBindingData().rcvInfoCerticifation.setAdapter(certificationAdapter)
+        getBindingData().rcvInfoCerticifation.adapter = certificationAdapter
     }
-    fun initRecyclerViewLanguage(){
+    private fun initRecyclerViewLanguage(){
         val languageAdapter = SkillAdapter(this,4,2)
         getBindingData().rcvInfoLanguage.layoutManager = LinearLayoutManager(context)
-        getBindingData().rcvInfoLanguage.setAdapter(languageAdapter)
+        getBindingData().rcvInfoLanguage.adapter = languageAdapter
     }
 }

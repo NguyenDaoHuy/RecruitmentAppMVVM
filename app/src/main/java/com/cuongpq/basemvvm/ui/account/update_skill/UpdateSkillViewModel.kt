@@ -1,4 +1,4 @@
-package com.cuongpq.basemvvm.ui.profile.update_skill
+package com.cuongpq.basemvvm.ui.account.update_skill
 
 import android.content.Context
 import com.cuongpq.basemvvm.data.local.AppDatabase
@@ -6,7 +6,6 @@ import com.cuongpq.basemvvm.data.model.job.skill.Skill
 import com.cuongpq.basemvvm.data.remote.InteractCommon
 import com.cuongpq.basemvvm.data.sqlite.SQLiteHelper
 import com.cuongpq.basemvvm.ui.base.viewmodel.BaseViewModel
-import com.cuongpq.basemvvm.ui.employer.create_job.create_request.CreateRequestViewModel
 import java.util.concurrent.Executor
 import javax.inject.Inject
 
@@ -24,23 +23,21 @@ class UpdateSkillViewModel @Inject constructor(
     private var languageList : ArrayList<Skill>? = null
 
     companion object{
-        val ADD_EXPERIENCE_2 = 1
-        val ADD_EDUCATION_2  = 2
-        val ADD_CERTIFICATION_2  = 3
-        val ADD_LANGUAGE_2  = 4
-        val ADD_EXPERIENCE_SUCCESS_2  = 5
-        val ADD_EDUCATION_SUCCESS_2  = 6
-        val ADD_CERTIFICATION_SUCCESS_2  = 7
-        val ADD_LANGUAGE_SUCCESS_2  = 8
-        val DELETE_EXPERIENCE_SUCCESS_2  = 9
-        val DELETE_EDUCATION_SUCCESS_2  = 10
-        val DELETE_CERTIFICATION_SUCCESS_2  = 11
-        val DELETE_LANGUAGE_SUCCESS_2  = 12
-        val CLICK_UPDATE = 13
+        const val ADD_EXPERIENCE_2 = 1
+        const val ADD_EDUCATION_2  = 2
+        const val ADD_CERTIFICATION_2  = 3
+        const val ADD_LANGUAGE_2  = 4
+        const val ADD_EXPERIENCE_SUCCESS_2  = 5
+        const val ADD_EDUCATION_SUCCESS_2  = 6
+        const val ADD_CERTIFICATION_SUCCESS_2  = 7
+        const val ADD_LANGUAGE_SUCCESS_2  = 8
+        const val DELETE_EXPERIENCE_SUCCESS_2  = 9
+        const val DELETE_EDUCATION_SUCCESS_2  = 10
+        const val DELETE_CERTIFICATION_SUCCESS_2  = 11
+        const val DELETE_LANGUAGE_SUCCESS_2  = 12
+        const val CLICK_UPDATE = 13
     }
-    init {
 
-    }
     fun onClickNext(){
         uiEventLiveData.value = CLICK_UPDATE
     }

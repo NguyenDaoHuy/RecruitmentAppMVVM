@@ -36,17 +36,17 @@ class LoginViewModel @Inject constructor(
         }
     }
     companion object{
-        val LOG_IN_SUCCESS = 1000
-        val LOG_IN_EROR = 1001
-        val START_REGISTER_FAGMENT = 1002
-        val GET_DATA_FROM_UI_AND_LOGIN = 1003
+        const val LOG_IN_SUCCESS = 1000
+        const val LOG_IN_EROR = 1001
+        const val START_REGISTER_FAGMENT = 1002
+        const val GET_DATA_FROM_UI_AND_LOGIN = 1003
     }
 
     fun onLogIn(){
             auth!!.signInWithEmailAndPassword(email, password).addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     firebaseUser = auth!!.currentUser
-                    userID = firebaseUser!!.getUid()
+                    userID = firebaseUser!!.uid
                     firebaseDatabase = FirebaseDatabase.getInstance()
                     databaseReference = firebaseDatabase!!.getReference(userID!!)
                     databaseReference!!.addValueEventListener(object : ValueEventListener{

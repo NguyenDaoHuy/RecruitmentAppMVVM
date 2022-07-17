@@ -24,8 +24,8 @@ class AnswerTheQuestionAdapter(private val inter : IAnswerTheQuestion) :
     }
 
     override fun onBindViewHolder(holder: AnswerViewHolder, position: Int) {
-        var question = inter.getQuestion(position)
-        holder.binding.tvQuestion.setText(question.content)
+        val question = inter.getQuestion(position)
+        holder.binding.tvQuestion.text = question.content
     }
 
     override fun getItemCount(): Int {

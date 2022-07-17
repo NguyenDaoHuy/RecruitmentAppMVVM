@@ -13,5 +13,5 @@
     <color name="color_main">#041C32</color>
     <color name="dialog_color_1">#FDD736</color>
     <color name="dialog_color_2">#3B5796</color>
-    <color name="transparent">#00000000</color>
+    <color name="transparent">#4D000000</color>
 </resources>

@@ -19,17 +19,13 @@ class AddJobViewModel @Inject constructor(
     lateinit var jobName : String
     lateinit var description :String
     lateinit var idAccount : String
-    var idCompany : Int = 0
+    private var idCompany : Int = 0
 
     companion object{
-        val ADD_JOB_SUCCESS = 2
-        val ADD_JOB_ERROR = 3
-        val NEXT_TO_REQUEST = 4
-        val ADD_JOB_EXISTS = 5
-    }
-
-    init {
-
+        const val ADD_JOB_SUCCESS = 2
+        const val ADD_JOB_ERROR = 3
+        const val NEXT_TO_REQUEST = 4
+        const val ADD_JOB_EXISTS = 5
     }
 
     fun onCLickNext(){
@@ -41,14 +37,14 @@ class AddJobViewModel @Inject constructor(
         idAccount = user.idAccount
         val cursor = sqLiteHelper.GetData("SELECT * FROM Job4 WHERE JobCode = '$jobCode'")
         if (cursor.count <= 0) {
-            val data = sqLiteHelper!!.GetData("SELECT * FROM User WHERE IdAccount = '$idAccount'")
+            val data = sqLiteHelper.GetData("SELECT * FROM User WHERE IdAccount = '$idAccount'")
             while (data.moveToNext()) {
                 idCompany = data.getInt(8)
             }
             if(idCompany == 0){
                 uiEventLiveData.value = ADD_JOB_ERROR
             }else{
-                sqLiteHelper!!.QueryData("INSERT INTO Job4 VALUES(null,'$jobCode','$jobName','$description','$idAccount','$idCompany','','','')")
+                sqLiteHelper.QueryData("INSERT INTO Job4 VALUES(null,'$jobCode','$jobName','$description','$idAccount','$idCompany','Hihi','','')")
                 uiEventLiveData.value = ADD_JOB_SUCCESS
             }
         } else {

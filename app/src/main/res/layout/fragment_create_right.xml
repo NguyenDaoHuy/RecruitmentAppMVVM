@@ -77,12 +77,12 @@
                 android:layout_marginBottom="50dp"
                 android:background="@drawable/custom_button_register"
                 android:fontFamily="sans-serif"
+                android:onClick="@{() -> createRightViewModel.onClickNext()}"
                 android:text="Tiếp theo"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
                 android:textSize="16dp"
-                android:textStyle="bold"
-                android:onClick="@{() -> createRightViewModel.onClickNext()}"/>
+                android:textStyle="bold" />
         </RelativeLayout>
     </LinearLayout>
 </layout>

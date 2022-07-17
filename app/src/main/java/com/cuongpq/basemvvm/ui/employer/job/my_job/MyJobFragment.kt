@@ -14,7 +14,7 @@ import com.cuongpq.basemvvm.ui.base.viewmodel.BaseViewModel
 import com.cuongpq.basemvvm.ui.employer.create_job.create_description.AddJobFragment
 import com.cuongpq.basemvvm.ui.employer.job.job_information.JobInformationFragment
 
-class MyJobFragment(var user: User?) : BaseMvvmFragment<MyJobCallBack, MyJobViewModel>() ,
+class MyJobFragment(private var user: User?) : BaseMvvmFragment<MyJobCallBack, MyJobViewModel>() ,
     MyJobCallBack,
     JobAdapter.IJob{
 
@@ -35,12 +35,12 @@ class MyJobFragment(var user: User?) : BaseMvvmFragment<MyJobCallBack, MyJobView
         mModel.getJobDataFromDB(requireContext(),user!!)
         initRecyclerViewoJob()
     }
-    fun initRecyclerViewoJob(){
+    private fun initRecyclerViewoJob(){
         val jobAdapter = JobAdapter(this, requireContext(),user!!)
         getBindingData().rcvListMyJob.layoutManager = LinearLayoutManager(context)
-        getBindingData().rcvListMyJob.setAdapter(jobAdapter)
+        getBindingData().rcvListMyJob.adapter = jobAdapter
     }
-    fun goToAddJob(){
+    private fun goToAddJob(){
         val fragmentTransaction = requireActivity().supportFragmentManager.beginTransaction()
         fragmentTransaction.replace(R.id.fragmentMain, AddJobFragment(user))
         fragmentTransaction.addToBackStack(AddJobFragment.TAG)
@@ -65,11 +65,11 @@ class MyJobFragment(var user: User?) : BaseMvvmFragment<MyJobCallBack, MyJobView
     }
 
     override fun getJob(position: Int): Job {
-        return mModel.getListJob().get(position)
+        return mModel.getListJob()[position]
     }
 
     override fun onClickJob(position: Int) {
-        val job = mModel.getListJob().get(position)
+        val job = mModel.getListJob()[position]
         val jobInformationFragment = JobInformationFragment(user!!)
         val bundle = Bundle()
         bundle.putSerializable("job",job)
@@ -81,35 +81,38 @@ class MyJobFragment(var user: User?) : BaseMvvmFragment<MyJobCallBack, MyJobView
     }
 
     override fun onClickPower(position: Int) {
-        val job = mModel.getListJob().get(position)
+        val job = mModel.getListJob()[position]
         mModel.setStatus(job,requireContext())
     }
 
     override fun onClickDelete(position: Int) {
-        val job = mModel.getListJob().get(position)
-        val alertDialog = AlertDialog.Builder(getContext())
+        val job = mModel.getListJob()[position]
+        val alertDialog = AlertDialog.Builder(context)
             .setTitle("Xác nhận xóa")
             .setMessage("Bạn có chắc chắn muốn xóa ?")
             .setPositiveButton(
-                "Có",
-                DialogInterface.OnClickListener { dialog: DialogInterface?, which: Int ->
-                   mModel.deleteJob(job,requireContext())
-                })
+                "Có"
+            ) { _: DialogInterface?, _: Int ->
+                mModel.deleteJob(job, requireContext())
+            }
             .setNegativeButton(
-                "Không",
-                DialogInterface.OnClickListener { dialog: DialogInterface?, which: Int -> })
+                "Không"
+            ) { _: DialogInterface?, _: Int -> }
             .create()
         alertDialog.show()
     }
 
-    fun setStatusSuccess(){
+    private fun setStatusSuccess(){
         mModel.getJobDataFromDB(requireContext(),user!!)
         getBindingData().rcvListMyJob.adapter!!.notifyDataSetChanged()
     }
-    fun deleteJobSuccess(){
+    private fun deleteJobSuccess(){
         Toast.makeText(context,"Xóa thành công",Toast.LENGTH_SHORT).show()
         mModel.getJobDataFromDB(requireContext(),user!!)
         getBindingData().rcvListMyJob.adapter!!.notifyDataSetChanged()
     }
 
+    companion object{
+        val TAG = MyJobFragment::class.java.name
+    }
 }

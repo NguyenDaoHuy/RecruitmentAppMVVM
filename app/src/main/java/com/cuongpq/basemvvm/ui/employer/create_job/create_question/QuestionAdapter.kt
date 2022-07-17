@@ -24,8 +24,8 @@ class QuestionAdapter(private val inter : IQuestionAdapter) :
     }
 
     override fun onBindViewHolder(holder: QuestionViewHolder, position: Int) {
-        var question = inter.getQuestion(position)
-        holder.binding.skillName.setText("- " + question.content)
+        val question = inter.getQuestion(position)
+        holder.binding.skillName.text = "- " + question.content
         holder.binding.btnDeleteSkill.setOnClickListener { v-> inter.onClickDeleteQuestion(position)}
     }
 

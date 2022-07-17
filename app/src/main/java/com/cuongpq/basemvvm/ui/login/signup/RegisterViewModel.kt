@@ -41,10 +41,10 @@ class RegisterViewModel @Inject constructor(
     }
 
     companion object {
-        val REGISTER_SUCCESS = 1000
-        val BACK_LOGIN = 1002
-        val REGISTER_ERROR = 1003
-        val GET_DATA_FROM_UI_AND_REGISTER = 1005
+        const val REGISTER_SUCCESS = 1000
+        const val BACK_LOGIN = 1002
+        const val REGISTER_ERROR = 1003
+        const val GET_DATA_FROM_UI_AND_REGISTER = 1005
     }
 
     fun onClickBackLogInFragment() {
@@ -56,8 +56,8 @@ class RegisterViewModel @Inject constructor(
         auth!!.createUserWithEmailAndPassword(email, password).addOnCompleteListener { task ->
             if (task.isSuccessful) {
                 firebaseDatabase = FirebaseDatabase.getInstance()
-                databaseReference = firebaseDatabase!!.getReference()
-                val IdAcount: String = task.getResult().getUser()!!.getUid()
+                databaseReference = firebaseDatabase!!.reference
+                val IdAcount: String = task.result.user!!.uid
                 val user = User(IdAcount,email,password,userName,age,phone,permission)
                 sqLiteHelper.QueryData("INSERT INTO User VALUES(null,'$IdAcount','$email','$password','$userName','$age','$phone','$permission','0')")
                 databaseReference!!.child(IdAcount).setValue(user)

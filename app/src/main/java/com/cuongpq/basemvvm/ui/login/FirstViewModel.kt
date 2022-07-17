@@ -12,8 +12,4 @@ class FirstViewModel @Inject constructor(
     scheduler: Executor
 ) : BaseViewModel<FirstCallBack>(appDatabase,interactCommon,scheduler){
 
-    init {
-
-    }
-
 }

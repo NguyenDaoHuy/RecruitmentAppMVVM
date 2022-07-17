@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+         <variable
+             name="createCompanyViewModel"
+             type="com.cuongpq.basemvvm.ui.employer.company.create_company.CreateCompanyViewModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@color/color_main">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="Thêm mới công ty"
+                android:textColor="#EDA441"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+        </RelativeLayout>
+        <EditText
+            android:id="@+id/edCompanyName"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="25dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginBottom="15dp"
+            android:background="@drawable/custom_input_login"
+            android:drawablePadding="15dp"
+            android:fontFamily="sans-serif"
+            android:hint="Nhập tên công ty"
+            android:padding="12dp"
+            android:textColor="@color/black"
+            android:textColorHighlight="@color/black"
+            android:textColorHint="#7C000000"
+            android:textSize="20dp"/>
+        <EditText
+            android:id="@+id/edCompanyAvatar"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_margin="15dp"
+            android:background="@drawable/custom_input_login"
+            android:drawablePadding="15dp"
+            android:fontFamily="sans-serif"
+            android:hint="Link ảnh công ty"
+            android:padding="12dp"
+            android:textColor="@color/black"
+            android:textColorHighlight="@color/black"
+            android:textColorHint="#7C000000"
+            android:textSize="20dp"/>
+        <EditText
+            android:id="@+id/edCompanyAddress"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_margin="15dp"
+            android:background="@drawable/custom_input_login"
+            android:drawablePadding="15dp"
+            android:fontFamily="sans-serif"
+            android:hint="Địa chỉ công ty"
+            android:padding="12dp"
+            android:textColor="@color/black"
+            android:textColorHighlight="@color/black"
+            android:textColorHint="#7C000000"
+            android:textSize="20dp"/>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Button
+                android:id="@+id/btnCreateCompany"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginBottom="100dp"
+                android:background="@drawable/custom_button_register"
+                android:fontFamily="sans-serif"
+                android:text="Thêm mới"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="16dp"
+                android:textStyle="bold"
+                android:onClick="@{() -> createCompanyViewModel.onClickCreateCompany()}"/>
+        </RelativeLayout>
+    </LinearLayout>
+</layout>

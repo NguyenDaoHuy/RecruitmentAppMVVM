@@ -5,7 +5,7 @@
     <data>
         <variable
             name="updateCompanyViewModel"
-            type="com.cuongpq.basemvvm.ui.employer.update_company.UpdateCompanyViewModel"/>
+            type="com.cuongpq.basemvvm.ui.employer.company.update_company.UpdateCompanyViewModel"/>
         <import type="android.view.View"/>
     </data>
        <LinearLayout
@@ -54,7 +54,8 @@
                        android:textColor="@color/white"
                        android:textAllCaps="false"
                        android:paddingRight="30dp"
-                       android:paddingLeft="30dp"/>
+                       android:paddingLeft="30dp"
+                       android:onClick="@{() -> updateCompanyViewModel.onClickCreateCompany()}"/>
                    <Button
                        android:id="@+id/btnSelectCompany"
                        android:layout_width="wrap_content"

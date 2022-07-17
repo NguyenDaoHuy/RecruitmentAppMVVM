@@ -7,7 +7,7 @@ import com.cuongpq.basemvvm.databinding.ActivityEmployerMainBinding
 import com.cuongpq.basemvvm.ui.base.activity.BaseMVVMActivity
 import com.cuongpq.basemvvm.ui.employer.job.my_job.MyJobFragment
 import com.cuongpq.basemvvm.ui.noticification.NoticificationFragment
-import com.cuongpq.basemvvm.ui.profile.ProfileFragment
+import com.cuongpq.basemvvm.ui.account.ProfileFragment
 
 class EmployerMainActivity : BaseMVVMActivity<EmployerMainCallBack,EmployerMainViewModel>(),EmployerMainCallBack {
 
@@ -50,8 +50,8 @@ class EmployerMainActivity : BaseMVVMActivity<EmployerMainCallBack,EmployerMainV
 //    }
 
     private fun getFragmet(fragment: Fragment){
-        var fragmentManager = supportFragmentManager
-        var fragmentTransaction = fragmentManager.beginTransaction()
+        val fragmentManager = supportFragmentManager
+        val fragmentTransaction = fragmentManager.beginTransaction()
         fragmentTransaction.replace(R.id.fragmentMain,fragment)
         fragmentTransaction.commit()
     }
@@ -64,6 +64,10 @@ class EmployerMainActivity : BaseMVVMActivity<EmployerMainCallBack,EmployerMainV
                 }
                 R.id.profileFragment -> {
                     getFragmet(ProfileFragment(user))
+                    return@setOnNavigationItemSelectedListener true
+                }
+                R.id.notificationFragment -> {
+                    getFragmet(NoticificationFragment(user))
                     return@setOnNavigationItemSelectedListener true
                 }
             }

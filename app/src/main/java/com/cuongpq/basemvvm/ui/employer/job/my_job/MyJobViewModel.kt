@@ -26,22 +26,18 @@ class MyJobViewModel @Inject constructor(
     private lateinit var company: Company
     private var sqLiteHelper : SQLiteHelper? = null
 
-    init {
-
-    }
-
     fun onClickAddJob(){
         uiEventLiveData.value = GO_ADD_JOB
     }
     companion object{
-        val GO_ADD_JOB = 1000
-        val SET_POWER_SUCCESS = 1001
-        val DELETE_SUCCESS = 1002
+        const val GO_ADD_JOB = 1000
+        const val SET_POWER_SUCCESS = 1001
+        const val DELETE_SUCCESS = 1002
     }
     fun getJobDataFromDB(context: Context,user : User){
         listJob = ArrayList()
         sqLiteHelper = SQLiteHelper(context, "Data.sqlite", null, 5)
-        var dataJob = sqLiteHelper!!.GetData("SELECT * FROM Job4 WHERE IdEmployer = '${user.idAccount}'")
+        val dataJob = sqLiteHelper!!.GetData("SELECT * FROM Job4 WHERE IdEmployer = '${user.idAccount}'")
         while (dataJob.moveToNext()){
              val id = dataJob.getInt(0)
              val code = dataJob.getString(1)
@@ -54,7 +50,7 @@ class MyJobViewModel @Inject constructor(
              val status = dataJob.getInt(8)
             // get data Skill of Job
             listSkill = ArrayList()
-            var dataSkill = sqLiteHelper!!.GetData("SELECT * FROM Skill1 WHERE IdJob = '$code'")
+            val dataSkill = sqLiteHelper!!.GetData("SELECT * FROM Skill1 WHERE IdJob = '$code'")
             while (dataSkill.moveToNext()) {
                 val idSkill = dataSkill.getInt(0)
                 val name = dataSkill.getString(1)
@@ -64,7 +60,7 @@ class MyJobViewModel @Inject constructor(
             }
             // get data Question of Job
             listQuestion= ArrayList()
-            var dataQuestion = sqLiteHelper!!.GetData("SELECT * FROM Question WHERE IdJob = '$code'")
+            val dataQuestion = sqLiteHelper!!.GetData("SELECT * FROM Question WHERE IdJob = '$code'")
             while (dataQuestion.moveToNext()) {
                 val idQuestion = dataQuestion.getInt(0)
                 val content = dataQuestion.getString(1)
@@ -72,7 +68,7 @@ class MyJobViewModel @Inject constructor(
                 listQuestion!!.add(Question(idQuestion, content, idJob))
             }
             // get data Company of Job
-            var dataCompany = sqLiteHelper!!.GetData("SELECT * FROM Company WHERE Id = '$IdCompany'")
+            val dataCompany = sqLiteHelper!!.GetData("SELECT * FROM Company WHERE Id = '$IdCompany'")
             while (dataCompany.moveToNext()) {
                 val idCompany = dataCompany.getInt(0)
                 val companyName = dataCompany.getString(1)
@@ -81,7 +77,7 @@ class MyJobViewModel @Inject constructor(
                 company = Company(idCompany,companyName,companyAvatar,companyAddress)
             }
             // get data User of Job
-            var dataUser = sqLiteHelper!!.GetData("SELECT * FROM User WHERE IdAccount = '$IdEmployer'")
+            val dataUser = sqLiteHelper!!.GetData("SELECT * FROM User WHERE IdAccount = '$IdEmployer'")
             while (dataUser.moveToNext()) {
                 val idUser = dataUser.getInt(0)
                 val IdAccount = dataUser.getString(1)

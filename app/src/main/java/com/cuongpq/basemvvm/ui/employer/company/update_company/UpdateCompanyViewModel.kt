@@ -1,4 +1,4 @@
-package com.cuongpq.basemvvm.ui.employer.update_company
+package com.cuongpq.basemvvm.ui.employer.company.update_company
 
 import android.app.Activity
 import com.cuongpq.basemvvm.data.local.AppDatabase
@@ -16,13 +16,12 @@ class UpdateCompanyViewModel @Inject constructor(
     scheduler: Executor
 ) : BaseViewModel<UpdateCompanyCallBack>(appDatabase,interactCommon,scheduler) {
     var sqLiteHelper: SQLiteHelper? = null
-    var listCompany : ArrayList<Company>? = null
-    init {
+    private var listCompany : ArrayList<Company>? = null
 
-    }
     companion object{
-        val COMPANY_COMFIRM = 1000
-        val SET_COMPANY = 1001
+        const val COMPANY_COMFIRM = 1000
+        const val SET_COMPANY = 1001
+        const val ON_CLICK_CREATE_COMPANY = 1002
     }
 
     fun getDataCompanyFromDatabase(activity: Activity){
@@ -53,5 +52,8 @@ class UpdateCompanyViewModel @Inject constructor(
     }
     fun onClickComfirm(){
         uiEventLiveData.value = COMPANY_COMFIRM
+    }
+    fun onClickCreateCompany(){
+        uiEventLiveData.value = ON_CLICK_CREATE_COMPANY
     }
 }

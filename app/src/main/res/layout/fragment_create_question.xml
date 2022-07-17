@@ -84,12 +84,30 @@
                 android:layout_marginBottom="30dp"
                 android:background="@drawable/custom_button_register"
                 android:fontFamily="sans-serif"
+                android:onClick="@{() -> createQuestionViewModel.onClickNext()}"
                 android:text="Tiếp theo"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
                 android:textSize="16dp"
-                android:textStyle="bold"
-                android:onClick="@{() -> createQuestionViewModel.onClickNext()}"/>
+                android:textStyle="bold" />
+            <Button
+                android:id="@+id/btnUpdateInQuestion"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginBottom="30dp"
+                android:background="@drawable/custom_button_login"
+                android:fontFamily="sans-serif"
+                android:onClick="@{() -> createQuestionViewModel.onClickUpdateQuestion()}"
+                android:text="OK"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="16dp"
+                android:textStyle="bold" />
         </RelativeLayout>
     </LinearLayout>
 </layout>

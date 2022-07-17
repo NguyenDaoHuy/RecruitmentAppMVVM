@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:background="@drawable/custom_box_create_request"
+        android:layout_margin="5dp">
+        <TextView
+            android:id="@+id/tvContentNotification"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="8"
+            android:text="Huy Tu đã ứng tuyển công việc Android Developer"
+            android:padding="8dp"
+            android:layout_marginLeft="10dp"
+            android:textStyle="bold"
+            android:textSize="18dp"
+            android:layout_gravity="center_vertical"/>
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:padding="10dp"
+            android:src="@drawable/avatardefult1"/>
+    </LinearLayout>
+</layout>

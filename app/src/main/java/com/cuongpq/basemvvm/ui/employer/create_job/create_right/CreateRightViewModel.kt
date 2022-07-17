@@ -16,18 +16,16 @@ class CreateRightViewModel  @Inject constructor(
 
     lateinit var idJob : String
     companion object{
-        val ON_CLICK_NEXT = 1
-        val ADD_RIGHT_SUCCESS = 2
+        const val ON_CLICK_NEXT = 1
+        const val ADD_RIGHT_SUCCESS = 3
     }
-    init {
 
-    }
     fun onClickNext(){
         uiEventLiveData.value = ON_CLICK_NEXT
     }
     fun setRightAndAmount(right : String,amount : Int,context : Context){
         val  sqLiteHelper = SQLiteHelper(context, "Data.sqlite", null, 5)
-        sqLiteHelper.QueryData("UPDATE Job4 SET right = '$right' AND amount = '$amount' WHERE JobCode ='$idJob'")
+        sqLiteHelper.QueryData("UPDATE Job4 SET right = '$right',amount = '$amount' WHERE JobCode ='$idJob'")
         uiEventLiveData.value = ADD_RIGHT_SUCCESS
     }
 }

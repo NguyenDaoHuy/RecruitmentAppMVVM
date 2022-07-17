@@ -1,9 +1,11 @@
 package com.cuongpq.basemvvm.ui.employer.create_job.create_request
 
+import android.annotation.SuppressLint
 import android.util.Log
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.cuongpq.basemvvm.R
+import com.cuongpq.basemvvm.data.model.User
 import com.cuongpq.basemvvm.data.model.job.skill.Skill
 import com.cuongpq.basemvvm.databinding.FragmentCreateRequestBinding
 import com.cuongpq.basemvvm.ui.base.fragment.BaseMvvmFragment
@@ -11,7 +13,7 @@ import com.cuongpq.basemvvm.ui.base.viewmodel.BaseViewModel
 import com.cuongpq.basemvvm.ui.employer.create_job.create_question.CreateQuestionFragment
 
 
-class CreateRequestFragment(var idJob : String?) :
+class CreateRequestFragment(var idJob : String?,private var user: User?,private var type : Int) :
     BaseMvvmFragment<CreateRequestCallBack,CreateRequestViewModel>(),CreateRequestCallBack ,
     SkillAdapter.ISkillAdapter{
 
@@ -76,14 +78,14 @@ class CreateRequestFragment(var idJob : String?) :
         val TAG = CreateRequestFragment::class.java.name
     }
 
-    fun onClickNextToQuestion(){
+    private fun onClickNextToQuestion(){
         val fragmentTransaction = requireFragmentManager().beginTransaction()
-        fragmentTransaction.replace(R.id.fragmentMain,CreateQuestionFragment(idJob))
+        fragmentTransaction.replace(R.id.fragmentMain,CreateQuestionFragment(idJob,user,type))
         fragmentTransaction.addToBackStack(CreateQuestionFragment.TAG)
         fragmentTransaction.commit()
     }
     // add Experience
-    fun onAddExperience(){
+    private fun onAddExperience(){
         edExperience = getBindingData().edExperience.text.toString().trim()
         if(edExperience!!.isEmpty()){
             Toast.makeText(context,"Nhập dữ liệu",Toast.LENGTH_SHORT).show()
@@ -91,21 +93,21 @@ class CreateRequestFragment(var idJob : String?) :
             mModel.addExperience(edExperience,context)
         }
     }
-    fun onAddExperienceSuccess(){
-        Toast.makeText(context,"Thêm kỹ năng thành công",Toast.LENGTH_SHORT).show()
+    @SuppressLint("NotifyDataSetChanged")
+    private fun onAddExperienceSuccess(){
         getBindingData().edExperience.setText("")
         mModel.getExperience(context)
         Log.e(mModel.getListExperience().size.toString(),"Test")
         getBindingData().rcvExperience.adapter!!.notifyDataSetChanged()
     }
-    fun initRecyclerViewExperience(){
+    private fun initRecyclerViewExperience(){
         val experienceAdapter = SkillAdapter(this,1,1)
         getBindingData().rcvExperience.layoutManager = LinearLayoutManager(context)
-        getBindingData().rcvExperience.setAdapter(experienceAdapter)
+        getBindingData().rcvExperience.adapter = experienceAdapter
     }
 
     // add Education
-    fun onAddEducation(){
+    private fun onAddEducation(){
         edEducation = getBindingData().edEducation.text.toString().trim()
         if(edEducation!!.isEmpty()){
             Toast.makeText(context,"Nhập dữ liệu",Toast.LENGTH_SHORT).show()
@@ -114,21 +116,21 @@ class CreateRequestFragment(var idJob : String?) :
         }
     }
 
-    fun onAddEducationSuccess(){
-        Toast.makeText(context,"Thêm học vấn thành công",Toast.LENGTH_SHORT).show()
+    @SuppressLint("NotifyDataSetChanged")
+    private fun onAddEducationSuccess(){
         getBindingData().edEducation.setText("")
         mModel.getEducation(context)
         Log.e(mModel.getListEducation().size.toString(),"Test")
         getBindingData().rcvEducation.adapter!!.notifyDataSetChanged()
     }
-    fun initRecyclerViewEducation(){
+    private fun initRecyclerViewEducation(){
         val educationAdapter = SkillAdapter(this,2,1)
         getBindingData().rcvEducation.layoutManager = LinearLayoutManager(context)
-        getBindingData().rcvEducation.setAdapter(educationAdapter)
+        getBindingData().rcvEducation.adapter = educationAdapter
     }
 
     // add Certification
-    fun onAddCertification(){
+    private fun onAddCertification(){
         edCertification = getBindingData().edCertification.text.toString().trim()
         if(edCertification!!.isEmpty()){
             Toast.makeText(context,"Nhập dữ liệu",Toast.LENGTH_SHORT).show()
@@ -136,21 +138,21 @@ class CreateRequestFragment(var idJob : String?) :
             mModel.addCertification(edCertification,context)
         }
     }
-    fun onAddCertificationSuccess(){
-        Toast.makeText(context,"Thêm chứng chỉ thành công",Toast.LENGTH_SHORT).show()
+    @SuppressLint("NotifyDataSetChanged")
+    private fun onAddCertificationSuccess(){
         getBindingData().edCertification.setText("")
         mModel.getCertification(context)
         Log.e(mModel.getListCertification().size.toString(),"Test")
         getBindingData().revCertification.adapter!!.notifyDataSetChanged()
     }
-    fun initRecyclerViewCertification(){
+    private fun initRecyclerViewCertification(){
         val certificationAdapter = SkillAdapter(this,3,1)
         getBindingData().revCertification.layoutManager = LinearLayoutManager(context)
-        getBindingData().revCertification.setAdapter(certificationAdapter)
+        getBindingData().revCertification.adapter = certificationAdapter
     }
 
     // add Language
-    fun onAddLanguage(){
+    private fun onAddLanguage(){
         edLanguage = getBindingData().edLanguage.text.toString().trim()
         if(edLanguage!!.isEmpty()){
             Toast.makeText(context,"Nhập dữ liệu",Toast.LENGTH_SHORT).show()
@@ -158,43 +160,31 @@ class CreateRequestFragment(var idJob : String?) :
             mModel.addLanguage(edLanguage,context)
         }
     }
-    fun onAddLanguageSuccess(){
-        Toast.makeText(context,"Thêm ngôn ngữ thành công",Toast.LENGTH_SHORT).show()
+    @SuppressLint("NotifyDataSetChanged")
+    private fun onAddLanguageSuccess(){
         getBindingData().edLanguage.setText("")
         mModel.getLanguage(context)
         Log.e(mModel.getListLanguage().size.toString(),"Test")
         getBindingData().rcvLanguage.adapter!!.notifyDataSetChanged()
     }
-    fun initRecyclerViewLanguage(){
+    private fun initRecyclerViewLanguage(){
         val languageAdapter = SkillAdapter(this,4,1)
         getBindingData().rcvLanguage.layoutManager = LinearLayoutManager(context)
-        getBindingData().rcvLanguage.setAdapter(languageAdapter)
+        getBindingData().rcvLanguage.adapter = languageAdapter
     }
 
     override fun count(type : Int): Int {
         when(type){
             1 -> {
-                if (mModel.getListExperience() == null){
-                    return 0
-                }
                 return mModel.getListExperience().size
             }
             2 -> {
-                if (mModel.getListEducation() == null){
-                    return 0
-                }
                 return mModel.getListEducation().size
             }
             3 -> {
-                if (mModel.getListCertification() == null){
-                    return 0
-                }
                 return mModel.getListCertification().size
             }
             4 -> {
-                if (mModel.getListLanguage() == null){
-                    return 0
-                }
                 return mModel.getListLanguage().size
             }
             else -> 0
@@ -205,59 +195,63 @@ class CreateRequestFragment(var idJob : String?) :
     override fun getSkill(position: Int,type : Int): Skill {
         when(type){
              1 -> {
-                 return mModel.getListExperience().get(position)
+                 return mModel.getListExperience()[position]
              }
              2 -> {
-                 return mModel.getListEducation().get(position)
+                 return mModel.getListEducation()[position]
              }
              3 -> {
-                 return mModel.getListCertification().get(position)
+                 return mModel.getListCertification()[position]
              }
              4 -> {
-                 return mModel.getListLanguage().get(position)
+                 return mModel.getListLanguage()[position]
              }
              else -> 0
         }
-        return mModel.getListExperience().get(position)
+        return mModel.getListExperience()[position]
     }
 
     override fun onClickDeleteSkill(position: Int,type : Int) {
         when(type){
             1 -> {
-                var skill = mModel.getListExperience().get(position)
+                val skill = mModel.getListExperience()[position]
                 mModel.deleteItem(skill,context,1)
             }
             2 -> {
-                var skill = mModel.getListEducation().get(position)
+                val skill = mModel.getListEducation()[position]
                 mModel.deleteItem(skill,context,2)
             }
             3 -> {
-                var skill = mModel.getListCertification().get(position)
+                val skill = mModel.getListCertification()[position]
                 mModel.deleteItem(skill,context,3)
             }
             4 -> {
-                var skill = mModel.getListLanguage().get(position)
+                val skill = mModel.getListLanguage()[position]
                 mModel.deleteItem(skill,context,4)
             }
             else -> 0
         }
     }
-    fun onDeleteExperienceSuccess(){
+    @SuppressLint("NotifyDataSetChanged")
+    private fun onDeleteExperienceSuccess(){
         Toast.makeText(context,"Xóa thành công",Toast.LENGTH_SHORT).show()
         mModel.getExperience(context)
         getBindingData().rcvExperience.adapter!!.notifyDataSetChanged()
     }
-    fun onDeleteEducationSuccess(){
+    @SuppressLint("NotifyDataSetChanged")
+    private fun onDeleteEducationSuccess(){
         Toast.makeText(context,"Xóa thành công",Toast.LENGTH_SHORT).show()
         mModel.getEducation(context)
         getBindingData().rcvEducation.adapter!!.notifyDataSetChanged()
     }
-    fun onDeleteCertificationSuccess(){
+    @SuppressLint("NotifyDataSetChanged")
+    private fun onDeleteCertificationSuccess(){
         Toast.makeText(context,"Xóa thành công",Toast.LENGTH_SHORT).show()
         mModel.getCertification(context)
         getBindingData().revCertification.adapter!!.notifyDataSetChanged()
     }
-    fun onDeleteLanguageSuccess(){
+    @SuppressLint("NotifyDataSetChanged")
+    private fun onDeleteLanguageSuccess(){
         Toast.makeText(context,"Xóa thành công",Toast.LENGTH_SHORT).show()
         mModel.getLanguage(context)
         getBindingData().rcvLanguage.adapter!!.notifyDataSetChanged()

@@ -1,4 +1,4 @@
-package com.cuongpq.basemvvm.ui.profile
+package com.cuongpq.basemvvm.ui.account
 
 import android.Manifest
 import android.app.Activity
@@ -7,11 +7,11 @@ import android.content.DialogInterface
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
-import android.graphics.drawable.ColorDrawable
 import android.net.Uri
 import android.os.Build
 import android.provider.MediaStore
 import android.view.View
+import android.widget.Button
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
@@ -19,13 +19,12 @@ import com.bumptech.glide.Glide
 import com.cuongpq.basemvvm.R
 import com.cuongpq.basemvvm.data.model.User
 import com.cuongpq.basemvvm.databinding.FragmentProfileBinding
+import com.cuongpq.basemvvm.ui.account.information.InformationFragment
+import com.cuongpq.basemvvm.ui.account.update_skill.UpdateSkillFragment
 import com.cuongpq.basemvvm.ui.base.fragment.BaseMvvmFragment
 import com.cuongpq.basemvvm.ui.base.viewmodel.BaseViewModel
-import com.cuongpq.basemvvm.ui.dialog.RateUsDialog
-import com.cuongpq.basemvvm.ui.employer.update_company.UpdateCompanyFragment
+import com.cuongpq.basemvvm.ui.employer.company.update_company.UpdateCompanyFragment
 import com.cuongpq.basemvvm.ui.login.FirstActivity
-import com.cuongpq.basemvvm.ui.profile.update_skill.UpdateSkillFragment
-import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
@@ -53,6 +52,7 @@ class ProfileFragment(var user : User?) : BaseMvvmFragment<ProfileCallBack,Profi
                 ProfileViewModel.ON_CLICK_AVT -> onClickRequestPermission()
                 ProfileViewModel.ON_CLICK_SET_AVT -> updateAvatar()
                 ProfileViewModel.ON_CLICK_COMPANY -> goToUpdateCompany()
+                ProfileViewModel.ON_CLICK_INFORMATION -> goToInformation()
             }
         }
         setInformationUser()
@@ -63,6 +63,7 @@ class ProfileFragment(var user : User?) : BaseMvvmFragment<ProfileCallBack,Profi
         getBindingData().tvUserEmail.text = user!!.email
         getBindingData().tvUserName.text = user!!.name
     }
+
 
 
     override fun getBindingData() = mBinding as FragmentProfileBinding
@@ -79,7 +80,7 @@ class ProfileFragment(var user : User?) : BaseMvvmFragment<ProfileCallBack,Profi
         showMessage(error.message!!)
     }
 
-    fun goToUpdateSkill(){
+    private fun goToUpdateSkill(){
         if(user!!.permission == 0){
             val fragmentTransaction = requireActivity().supportFragmentManager.beginTransaction()
             fragmentTransaction.replace(R.id.fragmentMain, UpdateSkillFragment(user))
@@ -93,7 +94,7 @@ class ProfileFragment(var user : User?) : BaseMvvmFragment<ProfileCallBack,Profi
         }
     }
 
-    fun goToUpdateCompany(){
+    private fun goToUpdateCompany(){
         if(user!!.permission == 0){
             val fragmentTransaction = requireActivity().supportFragmentManager.beginTransaction()
             fragmentTransaction.replace(R.id.fragmentMain, UpdateCompanyFragment(user!!))
@@ -104,33 +105,63 @@ class ProfileFragment(var user : User?) : BaseMvvmFragment<ProfileCallBack,Profi
         }
     }
 
-    fun onClickLogOut(){
-        val alertDialog = AlertDialog.Builder(getContext())
+    private fun goToInformation(){
+        if(user!!.permission == 0) {
+            val fragmentTransaction = requireActivity().supportFragmentManager.beginTransaction()
+            fragmentTransaction.replace(R.id.fragmentMain, InformationFragment(user!!))
+            fragmentTransaction.addToBackStack(InformationFragment.TAG)
+            fragmentTransaction.commit()
+        }else if(user!!.permission == 1){
+            val fragmentTransaction = requireActivity().supportFragmentManager.beginTransaction()
+            fragmentTransaction.replace(R.id.fragmentMain2, InformationFragment(user!!))
+            fragmentTransaction.addToBackStack(InformationFragment.TAG)
+            fragmentTransaction.commit()
+        }
+    }
+
+    private fun onClickLogOut(){
+        val alertDialog = AlertDialog.Builder(context)
             .setTitle("Xác nhận đăng xuất")
             .setMessage("Bạn có chắc chắn muốn đăng xuất ?")
             .setPositiveButton(
-                "Có",
-                DialogInterface.OnClickListener { dialog: DialogInterface?, which: Int ->
-                    mModel.onLogOut()
-                    val intent = Intent(context, FirstActivity::class.java)
-                    startActivity(intent)
-                })
+                "Có"
+            ) { dialog: DialogInterface?, which: Int ->
+                mModel.onLogOut()
+                val intent = Intent(context, FirstActivity::class.java)
+                startActivity(intent)
+            }
             .setNegativeButton(
-                "Không",
-                DialogInterface.OnClickListener { dialog: DialogInterface?, which: Int -> })
+                "Không"
+            ) { dialog: DialogInterface?, which: Int -> }
             .create()
         alertDialog.show()
     }
-    fun showDiaLog(){
-        val rateUsDialog = RateUsDialog(requireContext())
-        rateUsDialog.getWindow()!!.setBackgroundDrawable(ColorDrawable(resources.getColor(R.color.transparent)))
-        rateUsDialog.setCancelable(false)
-        rateUsDialog.show()
+    private fun showDiaLog(){
+//        val rateUsDialog = RateUsDialog(requireContext())
+//        rateUsDialog.getWindow()!!.setBackgroundDrawable(ColorDrawable(resources.getColor(R.color.transparent)))
+//        rateUsDialog.setCancelable(false)
+//        rateUsDialog.show()
+        val view = View.inflate(context,R.layout.rate_us_dialog_layout,null)
+        val builder = AlertDialog.Builder(context)
+        builder.setView(view)
+        val dialog = builder.create()
+        dialog.show()
+        dialog.window?.setBackgroundDrawableResource(R.color.transparent)
+        dialog.setCancelable(false)
+        val btnLater = view.findViewById<Button>(R.id.btnLater)
+        val btnRateNow = view.findViewById<Button>(R.id.btnRateNow)
+        btnLater.setOnClickListener {
+            dialog.dismiss()
+        }
+        btnRateNow.setOnClickListener {
+            Toast.makeText(context,"Thành công",Toast.LENGTH_SHORT).show()
+            dialog.dismiss()
+        }
     }
 
     private fun setUserAvatar() {
-        val user: FirebaseUser = FirebaseAuth.getInstance().getCurrentUser() ?: return
-        Glide.with(this).load(user.getPhotoUrl()).error(R.drawable.avatardefult1)
+        val user: FirebaseUser = FirebaseAuth.getInstance().currentUser ?: return
+        Glide.with(this).load(user.photoUrl).error(R.drawable.avatardefult1)
             .into(getBindingData().imAvatar)
     }
 
@@ -148,39 +179,39 @@ class ProfileFragment(var user : User?) : BaseMvvmFragment<ProfileCallBack,Profi
         }
     }
 
-    fun setBitmapImageView(bitmapImageView: Bitmap?) {
+    private fun setBitmapImageView(bitmapImageView: Bitmap?) {
         Glide.with(getBindingData().imAvatar).load(bitmapImageView).into(getBindingData().imAvatar)
     }
 
-    fun setmUri(mUri: Uri?) {
+    private fun setmUri(mUri: Uri?) {
         this.mUri = mUri
     }
 
     private fun updateAvatar() {
-        val user: FirebaseUser = FirebaseAuth.getInstance().getCurrentUser() ?: return
+        val user: FirebaseUser = FirebaseAuth.getInstance().currentUser ?: return
         val profileUpdates: UserProfileChangeRequest = UserProfileChangeRequest.Builder()
             .setPhotoUri(mUri)
             .build()
         user.updateProfile(profileUpdates)
-            .addOnCompleteListener(OnCompleteListener<Void> { task: Task<Void?> ->
-                getBindingData().btnSetAvt.setVisibility(View.INVISIBLE)
+            .addOnCompleteListener { task: Task<Void?> ->
+                getBindingData().btnSetAvt.visibility = View.INVISIBLE
                 if (task.isSuccessful) {
-                    Toast.makeText(getActivity(), "Sucess", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(activity, "Sucess", Toast.LENGTH_SHORT).show()
                     setUserAvatar()
                 }
-            })
+            }
     }
 
 
     private val intentActivityResultLauncher: ActivityResultLauncher<Intent> =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-            if (result.getResultCode() === Activity.RESULT_OK) {
+            if (result.resultCode === Activity.RESULT_OK) {
                 val intent: Intent = result.data ?: return@registerForActivityResult
-                val uri: Uri = intent.getData()!!
+                val uri: Uri = intent.data!!
                 setmUri(uri)
                 try {
                     val bitmap: Bitmap =
-                        MediaStore.Images.Media.getBitmap(activity?.getContentResolver(), uri)
+                        MediaStore.Images.Media.getBitmap(activity?.contentResolver, uri)
                     setBitmapImageView(bitmap)
                 } catch (e: IOException) {
                     e.printStackTrace()
@@ -191,18 +222,18 @@ class ProfileFragment(var user : User?) : BaseMvvmFragment<ProfileCallBack,Profi
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String?>, grantResults: IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         if (requestCode == MY_REQUEST_CODE) {
-            if (grantResults.size > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 openGallery()
             } else {
-                Toast.makeText(getContext(), "Please give access", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, "Please give access", Toast.LENGTH_SHORT).show()
             }
         }
     }
 
-    fun openGallery() {
+    private fun openGallery() {
         val intent = Intent()
-        intent.setType("image/*")
-        intent.setAction(Intent.ACTION_GET_CONTENT)
+        intent.type = "image/*"
+        intent.action = Intent.ACTION_GET_CONTENT
         intentActivityResultLauncher.launch(Intent.createChooser(intent, "Pick image"))
     }
 

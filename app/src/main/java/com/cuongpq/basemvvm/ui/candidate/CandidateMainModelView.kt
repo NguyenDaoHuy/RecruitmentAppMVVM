@@ -11,7 +11,4 @@ class CandidateMainModelView @Inject constructor(
     interactCommon: InteractCommon,
     scheduler: Executor
 ) : BaseViewModel<CandidateMainCallBack>(appDatabase, interactCommon, scheduler) {
-    init {
-
-    }
 }

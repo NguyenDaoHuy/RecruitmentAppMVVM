@@ -1,5 +1,6 @@
-package com.cuongpq.basemvvm.ui.profile.update_skill
+package com.cuongpq.basemvvm.ui.account.update_skill
 
+import android.annotation.SuppressLint
 import android.util.Log
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -9,7 +10,6 @@ import com.cuongpq.basemvvm.data.model.job.skill.Skill
 import com.cuongpq.basemvvm.databinding.FragmentUpdateSkillBinding
 import com.cuongpq.basemvvm.ui.base.fragment.BaseMvvmFragment
 import com.cuongpq.basemvvm.ui.base.viewmodel.BaseViewModel
-import com.cuongpq.basemvvm.ui.employer.create_job.create_request.CreateRequestViewModel
 import com.cuongpq.basemvvm.ui.employer.create_job.create_request.SkillAdapter
 
 class UpdateSkillFragment(var user : User?) : BaseMvvmFragment<UpdateSkillCallBack,UpdateSkillViewModel>(),UpdateSkillCallBack,SkillAdapter.ISkillAdapter {
@@ -73,7 +73,7 @@ class UpdateSkillFragment(var user : User?) : BaseMvvmFragment<UpdateSkillCallBa
         val TAG = UpdateSkillFragment::class.java.name
     }
 
-    fun upDateSuccess(){
+    private fun upDateSuccess(){
         Toast.makeText(context,"Cập nhập thành công",Toast.LENGTH_SHORT).show()
         requireActivity().supportFragmentManager.popBackStack()
     }
@@ -81,27 +81,15 @@ class UpdateSkillFragment(var user : User?) : BaseMvvmFragment<UpdateSkillCallBa
     override fun count(type: Int): Int {
         when(type){
             1 -> {
-                if (mModel.getListExperience() == null){
-                    return 0
-                }
                 return mModel.getListExperience().size
             }
             2 -> {
-                if (mModel.getListEducation() == null){
-                    return 0
-                }
                 return mModel.getListEducation().size
             }
             3 -> {
-                if (mModel.getListCertification() == null){
-                    return 0
-                }
                 return mModel.getListCertification().size
             }
             4 -> {
-                if (mModel.getListLanguage() == null){
-                    return 0
-                }
                 return mModel.getListLanguage().size
             }
             else -> 0
@@ -112,45 +100,45 @@ class UpdateSkillFragment(var user : User?) : BaseMvvmFragment<UpdateSkillCallBa
     override fun getSkill(position: Int, type: Int): Skill {
         when(type){
             1 -> {
-                return mModel.getListExperience().get(position)
+                return mModel.getListExperience()[position]
             }
             2 -> {
-                return mModel.getListEducation().get(position)
+                return mModel.getListEducation()[position]
             }
             3 -> {
-                return mModel.getListCertification().get(position)
+                return mModel.getListCertification()[position]
             }
             4 -> {
-                return mModel.getListLanguage().get(position)
+                return mModel.getListLanguage()[position]
             }
             else -> 0
         }
-        return mModel.getListExperience().get(position)
+        return mModel.getListExperience()[position]
     }
 
     override fun onClickDeleteSkill(position: Int, type: Int) {
         when(type){
             1 -> {
-                var skill = mModel.getListExperience().get(position)
+                val skill = mModel.getListExperience()[position]
                 mModel.deleteItem(skill,context,1)
             }
             2 -> {
-                var skill = mModel.getListEducation().get(position)
+                val skill = mModel.getListEducation()[position]
                 mModel.deleteItem(skill,context,2)
             }
             3 -> {
-                var skill = mModel.getListCertification().get(position)
+                val skill = mModel.getListCertification()[position]
                 mModel.deleteItem(skill,context,3)
             }
             4 -> {
-                var skill = mModel.getListLanguage().get(position)
+                val skill = mModel.getListLanguage()[position]
                 mModel.deleteItem(skill,context,4)
             }
             else -> 0
         }
     }
     // add Experience
-    fun onAddExperience(){
+    private fun onAddExperience(){
         edExperience = getBindingData().edExperience.text.toString().trim()
         if(edExperience!!.isEmpty()){
             Toast.makeText(context,"Nhập dữ liệu", Toast.LENGTH_SHORT).show()
@@ -158,21 +146,22 @@ class UpdateSkillFragment(var user : User?) : BaseMvvmFragment<UpdateSkillCallBa
             mModel.addExperience(edExperience,context)
         }
     }
-    fun onAddExperienceSuccess(){
+    @SuppressLint("NotifyDataSetChanged")
+    private fun onAddExperienceSuccess(){
         Toast.makeText(context,"Thêm kỹ năng thành công",Toast.LENGTH_SHORT).show()
         getBindingData().edExperience.setText("")
         mModel.getExperience(context)
         Log.e(mModel.getListExperience().size.toString(),"Test")
         getBindingData().rcvExperience.adapter!!.notifyDataSetChanged()
     }
-    fun initRecyclerViewExperience(){
+    private fun initRecyclerViewExperience(){
         val experienceAdapter = SkillAdapter(this,1,1)
         getBindingData().rcvExperience.layoutManager = LinearLayoutManager(context)
-        getBindingData().rcvExperience.setAdapter(experienceAdapter)
+        getBindingData().rcvExperience.adapter = experienceAdapter
     }
 
     // add Education
-    fun onAddEducation(){
+    private fun onAddEducation(){
         edEducation = getBindingData().edEducation.text.toString().trim()
         if(edEducation!!.isEmpty()){
             Toast.makeText(context,"Nhập dữ liệu",Toast.LENGTH_SHORT).show()
@@ -181,6 +170,7 @@ class UpdateSkillFragment(var user : User?) : BaseMvvmFragment<UpdateSkillCallBa
         }
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     fun onAddEducationSuccess(){
         Toast.makeText(context,"Thêm học vấn thành công",Toast.LENGTH_SHORT).show()
         getBindingData().edEducation.setText("")
@@ -188,14 +178,14 @@ class UpdateSkillFragment(var user : User?) : BaseMvvmFragment<UpdateSkillCallBa
         Log.e(mModel.getListEducation().size.toString(),"Test")
         getBindingData().rcvEducation.adapter!!.notifyDataSetChanged()
     }
-    fun initRecyclerViewEducation(){
+    private fun initRecyclerViewEducation(){
         val educationAdapter = SkillAdapter(this,2,1)
         getBindingData().rcvEducation.layoutManager = LinearLayoutManager(context)
-        getBindingData().rcvEducation.setAdapter(educationAdapter)
+        getBindingData().rcvEducation.adapter = educationAdapter
     }
 
     // add Certification
-    fun onAddCertification(){
+    private fun onAddCertification(){
         edCertification = getBindingData().edCertification.text.toString().trim()
         if(edCertification!!.isEmpty()){
             Toast.makeText(context,"Nhập dữ liệu",Toast.LENGTH_SHORT).show()
@@ -203,6 +193,7 @@ class UpdateSkillFragment(var user : User?) : BaseMvvmFragment<UpdateSkillCallBa
             mModel.addCertification(edCertification,context)
         }
     }
+    @SuppressLint("NotifyDataSetChanged")
     fun onAddCertificationSuccess(){
         Toast.makeText(context,"Thêm chứng chỉ thành công",Toast.LENGTH_SHORT).show()
         getBindingData().edCertification.setText("")
@@ -210,14 +201,14 @@ class UpdateSkillFragment(var user : User?) : BaseMvvmFragment<UpdateSkillCallBa
         Log.e(mModel.getListCertification().size.toString(),"Test")
         getBindingData().revCertification.adapter!!.notifyDataSetChanged()
     }
-    fun initRecyclerViewCertification(){
+    private fun initRecyclerViewCertification(){
         val certificationAdapter = SkillAdapter(this,3,1)
         getBindingData().revCertification.layoutManager = LinearLayoutManager(context)
-        getBindingData().revCertification.setAdapter(certificationAdapter)
+        getBindingData().revCertification.adapter = certificationAdapter
     }
 
     // add Language
-    fun onAddLanguage(){
+    private fun onAddLanguage(){
         edLanguage = getBindingData().edLanguage.text.toString().trim()
         if(edLanguage!!.isEmpty()){
             Toast.makeText(context,"Nhập dữ liệu",Toast.LENGTH_SHORT).show()
@@ -225,6 +216,7 @@ class UpdateSkillFragment(var user : User?) : BaseMvvmFragment<UpdateSkillCallBa
             mModel.addLanguage(edLanguage,context)
         }
     }
+    @SuppressLint("NotifyDataSetChanged")
     fun onAddLanguageSuccess(){
         Toast.makeText(context,"Thêm ngôn ngữ thành công",Toast.LENGTH_SHORT).show()
         getBindingData().edLanguage.setText("")
@@ -232,27 +224,31 @@ class UpdateSkillFragment(var user : User?) : BaseMvvmFragment<UpdateSkillCallBa
         Log.e(mModel.getListLanguage().size.toString(),"Test")
         getBindingData().rcvLanguage.adapter!!.notifyDataSetChanged()
     }
-    fun initRecyclerViewLanguage(){
+    private fun initRecyclerViewLanguage(){
         val languageAdapter = SkillAdapter(this,4,1)
         getBindingData().rcvLanguage.layoutManager = LinearLayoutManager(context)
-        getBindingData().rcvLanguage.setAdapter(languageAdapter)
+        getBindingData().rcvLanguage.adapter = languageAdapter
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     fun onDeleteExperienceSuccess(){
         Toast.makeText(context,"Xóa thành công",Toast.LENGTH_SHORT).show()
         mModel.getExperience(context)
         getBindingData().rcvExperience.adapter!!.notifyDataSetChanged()
     }
+    @SuppressLint("NotifyDataSetChanged")
     fun onDeleteEducationSuccess(){
         Toast.makeText(context,"Xóa thành công",Toast.LENGTH_SHORT).show()
         mModel.getEducation(context)
         getBindingData().rcvEducation.adapter!!.notifyDataSetChanged()
     }
+    @SuppressLint("NotifyDataSetChanged")
     fun onDeleteCertificationSuccess(){
         Toast.makeText(context,"Xóa thành công",Toast.LENGTH_SHORT).show()
         mModel.getCertification(context)
         getBindingData().revCertification.adapter!!.notifyDataSetChanged()
     }
+    @SuppressLint("NotifyDataSetChanged")
     fun onDeleteLanguageSuccess(){
         Toast.makeText(context,"Xóa thành công",Toast.LENGTH_SHORT).show()
         mModel.getLanguage(context)

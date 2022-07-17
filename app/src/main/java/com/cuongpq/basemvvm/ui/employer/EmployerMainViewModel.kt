@@ -12,7 +12,4 @@ class EmployerMainViewModel @Inject constructor(
     scheduler: Executor
 ) : BaseViewModel<EmployerMainCallBack>(appDatabase, interactCommon, scheduler) {
 
-    init {
-
-    }
 }

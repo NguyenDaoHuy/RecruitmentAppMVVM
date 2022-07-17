@@ -2,6 +2,7 @@ package com.cuongpq.basemvvm.di.builder
 
 import com.cuongpq.basemvvm.ui.candidate.answer.AnswerFragment
 import com.cuongpq.basemvvm.ui.candidate.list_job.ListJobSearchFragment
+import com.cuongpq.basemvvm.ui.employer.company.create_company.CreateCompanyFragment
 import com.cuongpq.basemvvm.ui.employer.job.job_information.JobInformationFragment
 import com.cuongpq.basemvvm.ui.employer.create_job.create_description.AddJobFragment
 import com.cuongpq.basemvvm.ui.employer.create_job.create_question.CreateQuestionFragment
@@ -9,13 +10,14 @@ import com.cuongpq.basemvvm.ui.employer.create_job.create_request.CreateRequestF
 import com.cuongpq.basemvvm.ui.employer.create_job.create_right.CreateRightFragment
 import com.cuongpq.basemvvm.ui.employer.create_job.create_status.CreateStatusFragment
 import com.cuongpq.basemvvm.ui.employer.job.my_job.MyJobFragment
-import com.cuongpq.basemvvm.ui.employer.update_company.UpdateCompanyFragment
+import com.cuongpq.basemvvm.ui.employer.company.update_company.UpdateCompanyFragment
 import com.cuongpq.basemvvm.ui.login.signin.LoginFragment
 import com.cuongpq.basemvvm.ui.login.signup.RegisterFragment
 import com.cuongpq.basemvvm.ui.xample.user.UserFragment
 import com.cuongpq.basemvvm.ui.noticification.NoticificationFragment
-import com.cuongpq.basemvvm.ui.profile.ProfileFragment
-import com.cuongpq.basemvvm.ui.profile.update_skill.UpdateSkillFragment
+import com.cuongpq.basemvvm.ui.account.ProfileFragment
+import com.cuongpq.basemvvm.ui.account.information.InformationFragment
+import com.cuongpq.basemvvm.ui.account.update_skill.UpdateSkillFragment
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 //******************************
@@ -73,4 +75,10 @@ abstract class FragmentBuilderModule {
 
     @ContributesAndroidInjector
     abstract fun contributeAnswerFragment() : AnswerFragment
+
+    @ContributesAndroidInjector
+    abstract fun contributeCreateCompanyFragment() : CreateCompanyFragment
+
+    @ContributesAndroidInjector
+    abstract fun contributeInformationFragment() : InformationFragment
 }

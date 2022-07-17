@@ -4,8 +4,6 @@ import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
-import android.util.Log
-import android.widget.Toast
 import com.cuongpq.basemvvm.R
 import com.cuongpq.basemvvm.data.model.User
 import com.cuongpq.basemvvm.databinding.FragmentLoginBinding
@@ -71,19 +69,19 @@ class LoginFragment : BaseMvvmFragment<LoginCallBack,LoginViewModel>(),LoginCall
         showMessage(error.message!!)
     }
 
-    fun getFragmentRegiter(){
+    private fun getFragmentRegiter(){
         val fragmentTransaction = requireActivity().supportFragmentManager.beginTransaction()
         fragmentTransaction.replace(R.id.fragmentLogin1,RegisterFragment())
         fragmentTransaction.addToBackStack(RegisterFragment.TAG)
         fragmentTransaction.commit()
     }
-    fun getLogInError(){
+    private fun getLogInError(){
         dialog.dismiss()
         showMessage("Đăng nhập không thành công !")
         getBindingData().tvThongBaoDangNhap.text = "Sai email hoặc mật khẩu"
     }
 
-    fun getLogInSuccess(){
+    private fun getLogInSuccess(){
         dialog.dismiss()
         showMessage("Đăng nhập thành công")
         val user : User = mModel.getUser()!!
@@ -103,13 +101,13 @@ class LoginFragment : BaseMvvmFragment<LoginCallBack,LoginViewModel>(),LoginCall
         setLocate()
     }
 
-    fun setLocate() {
+    private fun setLocate() {
         if(getBindingData().cbSave.isChecked){
             val sharedPreferences: SharedPreferences = requireActivity().getSharedPreferences(saveInformation, Context.MODE_PRIVATE)
             val editor: SharedPreferences.Editor = sharedPreferences.edit()
-            editor.putString("Email", getBindingData().editTextEmail.getText().toString().trim())
-            editor.putString("Password", getBindingData().editTextPassword.getText().toString().trim())
-            editor.putBoolean("Save", getBindingData().cbSave.isChecked())
+            editor.putString("Email", getBindingData().editTextEmail.text.toString().trim())
+            editor.putString("Password", getBindingData().editTextPassword.text.toString().trim())
+            editor.putBoolean("Save", getBindingData().cbSave.isChecked)
             editor.apply()
         }else{
             val sharedPreferences: SharedPreferences = requireActivity().getSharedPreferences(saveInformation, Context.MODE_PRIVATE)
@@ -130,7 +128,7 @@ class LoginFragment : BaseMvvmFragment<LoginCallBack,LoginViewModel>(),LoginCall
         if (save) {
             getBindingData().editTextEmail.setText(emailResume)
             getBindingData().editTextPassword.setText(passwordResume)
-            getBindingData().cbSave.setChecked(true)
+            getBindingData().cbSave.isChecked = true
         }
     }
 }

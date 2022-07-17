@@ -1,12 +1,15 @@
 package com.cuongpq.basemvvm.ui.employer.create_job.create_status
 
+
 import android.widget.Toast
 import com.cuongpq.basemvvm.R
+import com.cuongpq.basemvvm.data.model.User
 import com.cuongpq.basemvvm.databinding.FragmentSetStatusJobBinding
 import com.cuongpq.basemvvm.ui.base.fragment.BaseMvvmFragment
 import com.cuongpq.basemvvm.ui.base.viewmodel.BaseViewModel
+import com.cuongpq.basemvvm.ui.employer.job.my_job.MyJobFragment
 
-class CreateStatusFragment(var idJob : String?) : BaseMvvmFragment<CreateStatusCallBack,CreateStatusViewModel>(),CreateStatusCallBack{
+class CreateStatusFragment(var idJob : String?,private var user: User?) : BaseMvvmFragment<CreateStatusCallBack,CreateStatusViewModel>(),CreateStatusCallBack{
 
     private var status : Int = 0
 
@@ -38,7 +41,7 @@ class CreateStatusFragment(var idJob : String?) : BaseMvvmFragment<CreateStatusC
     override fun error(id: String, error: Throwable) {
         showMessage(error.message!!)
     }
-    fun onClickDone(){
+    private fun onClickDone(){
         if(getBindingData().rdPublic.isChecked){
             status = 1
         }else if(getBindingData().rdPrivate.isChecked){
@@ -46,8 +49,12 @@ class CreateStatusFragment(var idJob : String?) : BaseMvvmFragment<CreateStatusC
         }
         mModel.setStatus(requireContext(),status)
     }
-    fun onSetStatusSuccess(){
+    private fun onSetStatusSuccess(){
         Toast.makeText(context,"Tạo thành công",Toast.LENGTH_SHORT).show()
+        val fragmentTransaction = requireActivity().supportFragmentManager.beginTransaction()
+        fragmentTransaction.replace(R.id.fragmentMain, MyJobFragment(user))
+        fragmentTransaction.addToBackStack(MyJobFragment.TAG)
+        fragmentTransaction.commit()
     }
     companion object{
         val TAG = CreateStatusFragment::class.java.name

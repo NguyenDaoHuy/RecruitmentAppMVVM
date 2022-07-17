@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.cuongpq.basemvvm.data.model.job.skill.Skill
 import com.cuongpq.basemvvm.databinding.ItemSkillBinding
 
-class SkillAdapter(private val inter : ISkillAdapter, var type : Int,var delete : Int) :
+class SkillAdapter(private val inter : ISkillAdapter, var type : Int, private var delete : Int) :
     RecyclerView.Adapter<SkillAdapter.Companion.SkillViewHolder>(){
 
     companion object {
@@ -26,13 +26,13 @@ class SkillAdapter(private val inter : ISkillAdapter, var type : Int,var delete 
     }
 
     override fun onBindViewHolder(holder: SkillViewHolder, position: Int) {
-        var skill = inter.getSkill(position,type)
+        val skill = inter.getSkill(position,type)
         if(delete == 1){
             holder.binding.btnDeleteSkill.visibility = View.VISIBLE
         }else if(delete == 2){
             holder.binding.btnDeleteSkill.visibility = View.GONE
         }
-        holder.binding.skillName.setText("- " + skill.name)
+        holder.binding.skillName.text = "- " + skill.name
         holder.binding.btnDeleteSkill.setOnClickListener { v-> inter.onClickDeleteSkill(position,type) }
     }
 

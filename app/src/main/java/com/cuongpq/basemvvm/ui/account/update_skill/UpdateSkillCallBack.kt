@@ -1,4 +1,4 @@
-package com.cuongpq.basemvvm.ui.profile.update_skill
+package com.cuongpq.basemvvm.ui.account.update_skill
 
 import com.cuongpq.basemvvm.ui.base.callback.BaseCallBack
 

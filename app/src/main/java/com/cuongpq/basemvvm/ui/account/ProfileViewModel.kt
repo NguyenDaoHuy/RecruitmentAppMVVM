@@ -1,15 +1,9 @@
-package com.cuongpq.basemvvm.ui.profile
+package com.cuongpq.basemvvm.ui.account
 
-import android.content.ContentValues
-import android.util.Log
 import com.cuongpq.basemvvm.data.local.AppDatabase
-import com.cuongpq.basemvvm.data.model.User
 import com.cuongpq.basemvvm.data.remote.InteractCommon
 import com.cuongpq.basemvvm.ui.base.viewmodel.BaseViewModel
-import com.cuongpq.basemvvm.ui.login.signin.LoginViewModel
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
-import com.google.firebase.database.*
 import java.util.concurrent.Executor
 import javax.inject.Inject
 
@@ -22,12 +16,13 @@ class ProfileViewModel @Inject constructor(
     private var auth : FirebaseAuth? = null
 
     companion object{
-        val LOG_OUT = 1000
-        val GO_UPDATE_SKILL = 1001
-        val SHOW_DIALOG = 1002
-        val ON_CLICK_AVT = 1003
-        val ON_CLICK_SET_AVT = 1004
-        val ON_CLICK_COMPANY = 1005
+        const val LOG_OUT = 1000
+        const val GO_UPDATE_SKILL = 1001
+        const val SHOW_DIALOG = 1002
+        const val ON_CLICK_AVT = 1003
+        const val ON_CLICK_SET_AVT = 1004
+        const val ON_CLICK_COMPANY = 1005
+        const val ON_CLICK_INFORMATION = 1006
     }
     init {
         auth = FirebaseAuth.getInstance()
@@ -56,5 +51,8 @@ class ProfileViewModel @Inject constructor(
     }
     fun onClickCompany(){
         uiEventLiveData.value = ON_CLICK_COMPANY
+    }
+    fun onClickInformation(){
+        uiEventLiveData.value = ON_CLICK_INFORMATION
     }
 }

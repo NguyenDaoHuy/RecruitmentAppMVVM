@@ -20,14 +20,13 @@ class RateUsDialog(context: Context) : Dialog(context) {
     override fun onCreate(savedInstanceState: Bundle) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.inflate(LayoutInflater.from(context), R.layout.rate_us_dialog_layout, null, false)
-        setContentView(binding!!.getRoot())
+        setContentView(binding!!.root)
         onClick()
     }
 
     private fun onClick() {
-        binding!!.ratingBar.setOnRatingBarChangeListener(object :
-            RatingBar.OnRatingBarChangeListener {
-            override fun onRatingChanged(ratingBar: RatingBar, rating: Float, fromUser: Boolean) {
+        binding!!.ratingBar.onRatingBarChangeListener =
+            RatingBar.OnRatingBarChangeListener { _, rating, _ ->
                 if (rating <= 1) {
                     binding!!.imgStatus.setImageResource(R.drawable.one_star)
                 } else if (rating <= 2) {
@@ -42,18 +41,17 @@ class RateUsDialog(context: Context) : Dialog(context) {
                 animateImage(binding!!.imgStatus)
                 userRate = rating
             }
-        })
-        binding!!.btnRateNow.setOnClickListener(View.OnClickListener {
+        binding!!.btnRateNow.setOnClickListener({
             dismiss()
             Toast.makeText(context, "Ok", Toast.LENGTH_SHORT).show()
         })
-        binding!!.btnLater.setOnClickListener(View.OnClickListener { dismiss() })
+        binding!!.btnLater.setOnClickListener({ dismiss() })
     }
 
     private fun animateImage(ratingImage: ImageView) {
         val scaleAnimation = ScaleAnimation(0F, 1f, 0F, 1f, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f)
-        scaleAnimation.setFillAfter(true)
-        scaleAnimation.setDuration(200)
-        binding!!.imgStatus.setAnimation(scaleAnimation)
+        scaleAnimation.fillAfter = true
+        scaleAnimation.duration = 200
+        binding!!.imgStatus.animation = scaleAnimation
     }
 }

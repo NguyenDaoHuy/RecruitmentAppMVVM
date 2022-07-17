@@ -1,4 +1,4 @@
-package com.cuongpq.basemvvm.ui.employer.update_company
+package com.cuongpq.basemvvm.ui.employer.company.update_company
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -22,17 +22,17 @@ class CompanyAdapter(context: Context ,companyList: List<Company>) :
         return initView(position, convertView, parent)
     }
 
-    fun initView(position: Int,convertView: View?,parent: ViewGroup) : View{
-        var companyLogo : ImageView
-        var companyName : TextView
+    private fun initView(position: Int, convertView: View?, parent: ViewGroup) : View{
+        val companyLogo : ImageView
+        val companyName : TextView
         val company = getItem(position)
         val view = LayoutInflater.from(context).inflate(R.layout.custom_spinner_company,parent,false)
         companyLogo = view.findViewById(R.id.companyLogo)
         companyName =  view.findViewById(R.id.companyName)
-        companyName.setText(company!!.companyName)
+        companyName.text = company!!.companyName
         Glide.with(context).load(company.companyAvatar)
-            .placeholder(R.drawable.logo_bacha)
-            .error(R.drawable.logo_bacha)
+            .placeholder(R.drawable.img_company_load)
+            .error(R.drawable.img_company_false)
             .into(companyLogo)
         return view
     }

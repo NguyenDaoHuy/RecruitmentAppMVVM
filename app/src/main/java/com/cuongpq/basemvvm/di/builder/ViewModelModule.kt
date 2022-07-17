@@ -9,20 +9,22 @@ import com.cuongpq.basemvvm.ui.candidate.answer.AnswerViewModel
 import com.cuongpq.basemvvm.ui.candidate.list_job.ListJobSearchViewModel
 import com.cuongpq.basemvvm.ui.employer.job.job_information.JobInformationViewModel
 import com.cuongpq.basemvvm.ui.employer.EmployerMainViewModel
+import com.cuongpq.basemvvm.ui.employer.company.create_company.CreateCompanyViewModel
 import com.cuongpq.basemvvm.ui.employer.create_job.create_description.AddJobViewModel
 import com.cuongpq.basemvvm.ui.employer.create_job.create_question.CreateQuestionViewModel
 import com.cuongpq.basemvvm.ui.employer.create_job.create_request.CreateRequestViewModel
 import com.cuongpq.basemvvm.ui.employer.create_job.create_right.CreateRightViewModel
 import com.cuongpq.basemvvm.ui.employer.create_job.create_status.CreateStatusViewModel
 import com.cuongpq.basemvvm.ui.employer.job.my_job.MyJobViewModel
-import com.cuongpq.basemvvm.ui.employer.update_company.UpdateCompanyViewModel
+import com.cuongpq.basemvvm.ui.employer.company.update_company.UpdateCompanyViewModel
 import com.cuongpq.basemvvm.ui.login.FirstViewModel
 import com.cuongpq.basemvvm.ui.login.signin.LoginViewModel
 import com.cuongpq.basemvvm.ui.login.signup.RegisterViewModel
 import com.cuongpq.basemvvm.ui.xample.MainViewModel
 import com.cuongpq.basemvvm.ui.noticification.NotificationViewModel
-import com.cuongpq.basemvvm.ui.profile.ProfileViewModel
-import com.cuongpq.basemvvm.ui.profile.update_skill.UpdateSkillViewModel
+import com.cuongpq.basemvvm.ui.account.ProfileViewModel
+import com.cuongpq.basemvvm.ui.account.information.InformationViewModel
+import com.cuongpq.basemvvm.ui.account.update_skill.UpdateSkillViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
@@ -128,6 +130,16 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(AnswerViewModel::class)
     abstract fun bindsAnswerViewModel(answerViewModel: AnswerViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(CreateCompanyViewModel::class)
+    abstract fun bindsCreateCompanyViewModel(createCompanyViewModel: CreateCompanyViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(InformationViewModel::class)
+    abstract fun bindsInformationViewModel(informationViewModel: InformationViewModel): ViewModel
 
     @Binds
     abstract fun bindsViewModelFactory(viewModelFactory: ViewModelFactory): ViewModelProvider.Factory

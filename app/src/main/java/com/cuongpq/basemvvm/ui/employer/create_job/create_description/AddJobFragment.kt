@@ -9,14 +9,14 @@ import com.cuongpq.basemvvm.databinding.FragmentAddJobBinding
 import com.cuongpq.basemvvm.ui.base.fragment.BaseMvvmFragment
 import com.cuongpq.basemvvm.ui.base.viewmodel.BaseViewModel
 import com.cuongpq.basemvvm.ui.employer.create_job.create_request.CreateRequestFragment
-import com.cuongpq.basemvvm.ui.employer.update_company.UpdateCompanyFragment
+import com.cuongpq.basemvvm.ui.employer.company.update_company.UpdateCompanyFragment
 
-class AddJobFragment(var user: User?) : BaseMvvmFragment<CreateJobCallBack, AddJobViewModel>(),
+class AddJobFragment(private var user: User?) : BaseMvvmFragment<CreateJobCallBack, AddJobViewModel>(),
     CreateJobCallBack {
 
-    lateinit var jobCode :String
+    private lateinit var jobCode :String
     lateinit var jobName : String
-    lateinit var description :String
+    private lateinit var description :String
     var amount :Int = 0
 
     override fun setEvents() {
@@ -52,7 +52,7 @@ class AddJobFragment(var user: User?) : BaseMvvmFragment<CreateJobCallBack, AddJ
         val TAG = AddJobFragment::class.java.name
     }
 
-    fun onAddJob() {
+    private fun onAddJob() {
         jobCode = getBindingData().edJobCode.text.toString().trim()
         jobName = getBindingData().edJobName.text.toString().trim()
         description = getBindingData().edDescription.text.toString()
@@ -68,14 +68,14 @@ class AddJobFragment(var user: User?) : BaseMvvmFragment<CreateJobCallBack, AddJ
             mModel.addJobToDatabase(requireActivity(), user!!)
         }
     }
-    fun addJobSuccess(){
+    private fun addJobSuccess(){
         val fragmentTransaction = fragmentManager!!.beginTransaction()
-        fragmentTransaction.replace(R.id.fragmentMain,CreateRequestFragment(jobCode))
+        fragmentTransaction.replace(R.id.fragmentMain,CreateRequestFragment(jobCode,user,1))
         fragmentTransaction.addToBackStack(CreateRequestFragment.TAG)
         fragmentTransaction.commit()
     }
-    fun addJobError(){
-        val alertDialog = AlertDialog.Builder(getContext())
+    private fun addJobError(){
+        val alertDialog = AlertDialog.Builder(context)
             .setTitle("Thông báo")
             .setMessage("Bạn chưa cập nhập công ty ! ")
             .setPositiveButton(
@@ -92,7 +92,7 @@ class AddJobFragment(var user: User?) : BaseMvvmFragment<CreateJobCallBack, AddJ
             .create()
         alertDialog.show()
     }
-    fun addJobExists(){
+    private fun addJobExists(){
         Toast.makeText(context, "Đã tồn tại mã", Toast.LENGTH_SHORT).show()
     }
 }
