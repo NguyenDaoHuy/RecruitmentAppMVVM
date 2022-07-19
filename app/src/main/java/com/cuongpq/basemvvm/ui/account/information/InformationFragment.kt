@@ -1,7 +1,10 @@
 package com.cuongpq.basemvvm.ui.account.information
 
 import android.annotation.SuppressLint
+import android.graphics.BitmapFactory
+import android.util.Base64
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
 import com.cuongpq.basemvvm.R
 import com.cuongpq.basemvvm.data.model.User
 import com.cuongpq.basemvvm.data.model.job.skill.Skill
@@ -12,7 +15,6 @@ import com.cuongpq.basemvvm.ui.employer.create_job.create_request.SkillAdapter
 
 
 class InformationFragment(private val user : User) : BaseMvvmFragment<InformationCallBack,InformationViewModel>(),InformationCallBack,SkillAdapter.ISkillAdapter {
-
 
 
     override fun initComponents() {
@@ -39,6 +41,14 @@ class InformationFragment(private val user : User) : BaseMvvmFragment<Informatio
         initRecyclerViewEducation()
         initRecyclerViewCertification()
         initRecyclerViewLanguage()
+        mModel.getAvatarUser(user.idAccount,requireContext())
+
+        val bytes: ByteArray = Base64.decode(mModel.getAvatarUser().avt, Base64.DEFAULT)
+        val bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.size)
+        Glide.with(getBindingData().imAvatar)
+            .load(bitmap)
+            .error(R.drawable.avatardefult1)
+            .into(getBindingData().imAvatar)
     }
 
     override fun getLayoutMain(): Int {

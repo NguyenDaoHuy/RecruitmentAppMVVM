@@ -2,6 +2,7 @@ package com.cuongpq.basemvvm.ui.account.information
 
 import android.content.Context
 import com.cuongpq.basemvvm.data.local.AppDatabase
+import com.cuongpq.basemvvm.data.model.AvatarUser
 import com.cuongpq.basemvvm.data.model.job.skill.Skill
 import com.cuongpq.basemvvm.data.remote.InteractCommon
 import com.cuongpq.basemvvm.data.sqlite.SQLiteHelper
@@ -19,6 +20,7 @@ class InformationViewModel @Inject constructor(
     private var listSkillUserEducation : ArrayList<Skill>? = null
     private var listSkillCertification : ArrayList<Skill>? = null
     private var listSkillLanguage : ArrayList<Skill>? = null
+    private var avatarUser : AvatarUser? = null
 
     // get Experience
     fun getSkillUserExperience(idAccount : String,context: Context){
@@ -86,5 +88,19 @@ class InformationViewModel @Inject constructor(
     }
     fun getListSkillUserLanguage() : ArrayList<Skill>{
         return listSkillLanguage!!
+    }
+
+    fun getAvatarUser(idAccount : String,context: Context){
+        val sqLiteHelper = SQLiteHelper(context, "Data.sqlite", null, 5)
+        val data = sqLiteHelper.GetData("SELECT * FROM UserAvatar WHERE IdUser = '$idAccount'")
+        while (data.moveToNext()){
+            val idAvt= data.getInt(0)
+            val idAc = data.getString(1)
+            val strAvt = data.getString(2)
+            avatarUser = AvatarUser(idAvt,idAc,strAvt)
+        }
+    }
+    fun getAvatarUser() : AvatarUser{
+        return avatarUser!!
     }
 }

@@ -10,6 +10,8 @@ import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Build
 import android.provider.MediaStore
+import android.util.Base64
+import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.Toast
@@ -25,16 +27,19 @@ import com.cuongpq.basemvvm.ui.base.fragment.BaseMvvmFragment
 import com.cuongpq.basemvvm.ui.base.viewmodel.BaseViewModel
 import com.cuongpq.basemvvm.ui.employer.company.update_company.UpdateCompanyFragment
 import com.cuongpq.basemvvm.ui.login.FirstActivity
+import com.cuongpq.basemvvm.ui.payer.PayerActivity
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.UserProfileChangeRequest
+import java.io.ByteArrayOutputStream
 import java.io.IOException
 
 
 class ProfileFragment(var user : User?) : BaseMvvmFragment<ProfileCallBack,ProfileViewModel>(),ProfileCallBack {
 
     private var mUri: Uri? = null
+    private var strAvatar: String? = null
 
     override fun setEvents() {
 
@@ -50,9 +55,10 @@ class ProfileFragment(var user : User?) : BaseMvvmFragment<ProfileCallBack,Profi
                 ProfileViewModel.GO_UPDATE_SKILL -> goToUpdateSkill()
                 ProfileViewModel.SHOW_DIALOG -> showDiaLog()
                 ProfileViewModel.ON_CLICK_AVT -> onClickRequestPermission()
-                ProfileViewModel.ON_CLICK_SET_AVT -> updateAvatar()
+                ProfileViewModel.ON_CLICK_SET_AVT -> updateAvatar(strAvatar!!)
                 ProfileViewModel.ON_CLICK_COMPANY -> goToUpdateCompany()
                 ProfileViewModel.ON_CLICK_INFORMATION -> goToInformation()
+                ProfileViewModel.ON_CLICK_PAY -> goToPayer()
             }
         }
         setInformationUser()
@@ -117,6 +123,11 @@ class ProfileFragment(var user : User?) : BaseMvvmFragment<ProfileCallBack,Profi
             fragmentTransaction.addToBackStack(InformationFragment.TAG)
             fragmentTransaction.commit()
         }
+    }
+
+    private fun goToPayer(){
+        val intent = Intent(context,PayerActivity::class.java)
+        startActivity(intent)
     }
 
     private fun onClickLogOut(){
@@ -187,7 +198,8 @@ class ProfileFragment(var user : User?) : BaseMvvmFragment<ProfileCallBack,Profi
         this.mUri = mUri
     }
 
-    private fun updateAvatar() {
+    private fun updateAvatar(strAvatar : String) {
+        mModel.saveAvatarToDB(user!!,strAvatar,requireContext())
         val user: FirebaseUser = FirebaseAuth.getInstance().currentUser ?: return
         val profileUpdates: UserProfileChangeRequest = UserProfileChangeRequest.Builder()
             .setPhotoUri(mUri)
@@ -210,9 +222,14 @@ class ProfileFragment(var user : User?) : BaseMvvmFragment<ProfileCallBack,Profi
                 val uri: Uri = intent.data!!
                 setmUri(uri)
                 try {
-                    val bitmap: Bitmap =
-                        MediaStore.Images.Media.getBitmap(activity?.contentResolver, uri)
+                    val bitmap: Bitmap = MediaStore.Images.Media.getBitmap(activity?.contentResolver, uri)
                     setBitmapImageView(bitmap)
+
+                    val stream = ByteArrayOutputStream()
+                    bitmap.compress(Bitmap.CompressFormat.JPEG, 0, stream)
+                    val bytes = stream.toByteArray()
+                    strAvatar = Base64.encodeToString(bytes, Base64.DEFAULT)
+
                 } catch (e: IOException) {
                     e.printStackTrace()
                 }

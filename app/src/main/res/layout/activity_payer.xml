@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+         <variable
+             name="payerActivityViewModel"
+             type="com.cuongpq.basemvvm.ui.payer.PayerActivityViewModel" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+          <Button
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:text="Thanh toán"
+              android:textAllCaps="false"
+              android:layout_centerInParent="true"
+              android:background="@drawable/custom_box_create_request"
+              android:paddingLeft="30dp"
+              android:paddingRight="30dp"
+              android:onClick="@{() -> payerActivityViewModel.onClickPay()}"/>
+    </RelativeLayout>
+</layout>

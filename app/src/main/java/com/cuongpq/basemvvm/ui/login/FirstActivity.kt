@@ -89,6 +89,11 @@ class FirstActivity : BaseMVVMActivity<FirstCallBack,FirstViewModel>(),FirstCall
                     "IdQuestion INTEGER," +
                     "content NVARCHAR(500))"
         )
+        sqLiteHelper!!.QueryData(
+            "CREATE TABLE IF NOT EXISTS UserAvatar(Id INTEGER PRIMARY KEY AUTOINCREMENT," +
+                    "IdUser NVARCHAR(100)," +
+                    "avatar TEXT)"
+        )
     }
 
     override fun getBindingData() = mBinding as ActivityFirstBinding

@@ -2,6 +2,7 @@ package com.cuongpq.basemvvm.ui.noticification
 
 import android.content.Context
 import com.cuongpq.basemvvm.data.local.AppDatabase
+import com.cuongpq.basemvvm.data.model.AvatarUser
 import com.cuongpq.basemvvm.data.model.Company
 import com.cuongpq.basemvvm.data.model.NotificationItem
 import com.cuongpq.basemvvm.data.model.User
@@ -27,6 +28,7 @@ class NotificationViewModel  @Inject constructor(
     private lateinit var company: Company
     private lateinit var candidate : User
     private lateinit var job : Job
+    private lateinit var avatarUser : AvatarUser
     fun getDataNotification(employer : User,context: Context){
         listNotification = ArrayList()
         val sqLiteHelper = SQLiteHelper(context, "Data.sqlite", null, 5)
@@ -107,10 +109,18 @@ class NotificationViewModel  @Inject constructor(
                 val IdCompany = dataUser.getInt(8)
                 candidate = User(IdAccount,email,password,userName,age,phone,permission)
             }
-            listNotification!!.add(NotificationItem(id,candidate,job))
+            //get avatar
+            val data = sqLiteHelper.GetData("SELECT * FROM UserAvatar WHERE IdUser = '$IdCandidate'")
+            while (data.moveToNext()){
+                val idAvt= data.getInt(0)
+                val idAc = data.getString(1)
+                val strAvt = data.getString(2)
+                avatarUser = AvatarUser(idAvt,idAc,strAvt)
+            }
+            listNotification!!.add(NotificationItem(id,candidate,job,avatarUser))
         }
     }
     fun getListNotification() : ArrayList<NotificationItem>{
-        return listNotification!!
+        return listNotification!!.reversed() as ArrayList<NotificationItem>
     }
 }

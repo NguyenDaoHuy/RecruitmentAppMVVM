@@ -5,4 +5,5 @@ import java.io.Serializable
 
 data class NotificationItem(var id : Int = 0 ,
                              var candidate : User? = null,
-                             var job : Job? = null) : Serializable
+                             var job : Job? = null,
+                             var avatarUser: AvatarUser? = null) : Serializable

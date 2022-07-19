@@ -1,9 +1,11 @@
 package com.cuongpq.basemvvm.ui.employer.job.my_job
 
+import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.content.DialogInterface
 import android.os.Bundle
 import android.widget.Toast
+import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.cuongpq.basemvvm.R
 import com.cuongpq.basemvvm.data.model.User
@@ -14,14 +16,11 @@ import com.cuongpq.basemvvm.ui.base.viewmodel.BaseViewModel
 import com.cuongpq.basemvvm.ui.employer.create_job.create_description.AddJobFragment
 import com.cuongpq.basemvvm.ui.employer.job.job_information.JobInformationFragment
 
-class MyJobFragment(private var user: User?) : BaseMvvmFragment<MyJobCallBack, MyJobViewModel>() ,
-    MyJobCallBack,
-    JobAdapter.IJob{
-
+class MyJobFragment(private var user: User?) : BaseMvvmFragment<MyJobCallBack, MyJobViewModel>() , MyJobCallBack, JobAdapter.IJob{
+    private var searchString : String? = null
     override fun setEvents() {
 
     }
-
     override fun initComponents() {
          getBindingData().myJobViewModel = mModel
          mModel.uiEventLiveData.observe(this){
@@ -32,8 +31,9 @@ class MyJobFragment(private var user: User?) : BaseMvvmFragment<MyJobCallBack, M
                  MyJobViewModel.DELETE_SUCCESS -> deleteJobSuccess()
              }
          }
-        mModel.getJobDataFromDB(requireContext(),user!!)
+        mModel.getJobDataFromDB(requireContext(),user!!,"")
         initRecyclerViewoJob()
+        onSearch()
     }
     private fun initRecyclerViewoJob(){
         val jobAdapter = JobAdapter(this, requireContext(),user!!)
@@ -45,6 +45,20 @@ class MyJobFragment(private var user: User?) : BaseMvvmFragment<MyJobCallBack, M
         fragmentTransaction.replace(R.id.fragmentMain, AddJobFragment(user))
         fragmentTransaction.addToBackStack(AddJobFragment.TAG)
         fragmentTransaction.commit()
+    }
+    // HÀM SEARCH
+    private fun onSearch(){
+        getBindingData().searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String): Boolean {
+                return false
+            }
+            override fun onQueryTextChange(newText: String): Boolean {
+                searchString = newText
+                mModel.getJobDataFromDB(requireContext(),user!!,newText)
+                getBindingData().rcvListMyJob.adapter!!.notifyDataSetChanged();
+                return false
+            }
+        })
     }
 
     override fun getBindingData() = mBinding as FragmentMyJobBinding
@@ -103,12 +117,13 @@ class MyJobFragment(private var user: User?) : BaseMvvmFragment<MyJobCallBack, M
     }
 
     private fun setStatusSuccess(){
-        mModel.getJobDataFromDB(requireContext(),user!!)
+
+        mModel.getJobDataFromDB(requireContext(),user!!,searchString!!)
         getBindingData().rcvListMyJob.adapter!!.notifyDataSetChanged()
     }
     private fun deleteJobSuccess(){
         Toast.makeText(context,"Xóa thành công",Toast.LENGTH_SHORT).show()
-        mModel.getJobDataFromDB(requireContext(),user!!)
+        mModel.getJobDataFromDB(requireContext(),user!!,"")
         getBindingData().rcvListMyJob.adapter!!.notifyDataSetChanged()
     }
 

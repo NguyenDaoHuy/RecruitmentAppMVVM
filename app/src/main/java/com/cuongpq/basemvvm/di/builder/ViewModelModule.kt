@@ -25,6 +25,7 @@ import com.cuongpq.basemvvm.ui.noticification.NotificationViewModel
 import com.cuongpq.basemvvm.ui.account.ProfileViewModel
 import com.cuongpq.basemvvm.ui.account.information.InformationViewModel
 import com.cuongpq.basemvvm.ui.account.update_skill.UpdateSkillViewModel
+import com.cuongpq.basemvvm.ui.payer.PayerActivityViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
@@ -140,6 +141,11 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(InformationViewModel::class)
     abstract fun bindsInformationViewModel(informationViewModel: InformationViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(PayerActivityViewModel::class)
+    abstract fun bindsPayerActivityViewModel(payerActivityViewModel: PayerActivityViewModel): ViewModel
 
     @Binds
     abstract fun bindsViewModelFactory(viewModelFactory: ViewModelFactory): ViewModelProvider.Factory

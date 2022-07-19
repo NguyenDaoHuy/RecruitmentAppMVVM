@@ -22,9 +22,13 @@
         <entry key="..\:/CongTy/basemvvm-main/BaseMVVM/app/src/main/res/drawable/ic_cham_dau_dong.xml" value="0.1565" />
         <entry key="..\:/CongTy/basemvvm-main/BaseMVVM/app/src/main/res/drawable/profile_custom_avatar.xml" value="0.2265" />
         <entry key="..\:/CongTy/basemvvm-main/BaseMVVM/app/src/main/res/layout/activity_candidate.xml" value="0.2" />
+        <entry key="..\:/CongTy/basemvvm-main/BaseMVVM/app/src/main/res/layout/activity_card.xml" value="0.25" />
         <entry key="..\:/CongTy/basemvvm-main/BaseMVVM/app/src/main/res/layout/activity_employer_main.xml" value="0.2" />
         <entry key="..\:/CongTy/basemvvm-main/BaseMVVM/app/src/main/res/layout/activity_first.xml" value="0.25" />
         <entry key="..\:/CongTy/basemvvm-main/BaseMVVM/app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="..\:/CongTy/basemvvm-main/BaseMVVM/app/src/main/res/layout/activity_payer.xml" value="0.25" />
+        <entry key="..\:/CongTy/basemvvm-main/BaseMVVM/app/src/main/res/layout/activity_payer2.xml" value="0.25" />
+        <entry key="..\:/CongTy/basemvvm-main/BaseMVVM/app/src/main/res/layout/activity_payer_test.xml" value="0.2359375" />
         <entry key="..\:/CongTy/basemvvm-main/BaseMVVM/app/src/main/res/layout/custom_spinner_company.xml" value="0.2" />
         <entry key="..\:/CongTy/basemvvm-main/BaseMVVM/app/src/main/res/layout/custom_xacnhan_hoadon.xml" value="0.2" />
         <entry key="..\:/CongTy/basemvvm-main/BaseMVVM/app/src/main/res/layout/dialog_confirm.xml" value="0.25" />

@@ -3,6 +3,7 @@ package com.cuongpq.basemvvm.di.builder
 import com.cuongpq.basemvvm.ui.candidate.CandidateMainActivity
 import com.cuongpq.basemvvm.ui.employer.EmployerMainActivity
 import com.cuongpq.basemvvm.ui.login.FirstActivity
+import com.cuongpq.basemvvm.ui.payer.PayerActivity
 import com.cuongpq.basemvvm.ui.xample.MainActivity
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
@@ -25,4 +26,7 @@ abstract class ActivityBuilderModule {
 
     @ContributesAndroidInjector
     abstract fun contributeCandidateMainActivity(): CandidateMainActivity
+
+    @ContributesAndroidInjector
+    abstract fun contributePayerActivity(): PayerActivity
 }

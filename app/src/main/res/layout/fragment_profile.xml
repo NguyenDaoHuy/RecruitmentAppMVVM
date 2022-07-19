@@ -24,9 +24,9 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="30dp"
                 android:background="@drawable/profile_custom_avatar"
+                android:onClick="@{() -> profileViewModel.onClickAvatar()}"
                 android:scaleType="centerCrop"
-                android:src="@drawable/avatardefult1"
-                android:onClick="@{() -> profileViewModel.onClickAvatar()}"/>
+                android:src="@drawable/avatardefult1" />
 
             <Button
                 android:id="@+id/btnSetAvt"
@@ -134,7 +134,8 @@
                 android:textSize="20dp"
                 android:paddingBottom="15dp"
                 android:textStyle="bold"
-                android:background="?attr/selectableItemBackground"/>
+                android:background="?attr/selectableItemBackground"
+                android:onClick="@{() -> profileViewModel.onClickPay()}"/>
         </LinearLayout>
 
         <LinearLayout

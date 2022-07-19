@@ -22,6 +22,18 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BaseMVVM">
         <activity
+            android:name=".CardActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Payer2Activity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.payer.PayerTestActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.payer.PayerActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.employer.EmployerMainActivity"
             android:exported="false" />
         <activity

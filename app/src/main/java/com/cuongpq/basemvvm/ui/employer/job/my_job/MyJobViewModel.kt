@@ -34,10 +34,10 @@ class MyJobViewModel @Inject constructor(
         const val SET_POWER_SUCCESS = 1001
         const val DELETE_SUCCESS = 1002
     }
-    fun getJobDataFromDB(context: Context,user : User){
+    fun getJobDataFromDB(context: Context,user : User,text: String){
         listJob = ArrayList()
         sqLiteHelper = SQLiteHelper(context, "Data.sqlite", null, 5)
-        val dataJob = sqLiteHelper!!.GetData("SELECT * FROM Job4 WHERE IdEmployer = '${user.idAccount}'")
+        val dataJob = sqLiteHelper!!.GetData("SELECT * FROM Job4 WHERE IdEmployer = '${user.idAccount}' AND JobName LIKE '%$text%'")
         while (dataJob.moveToNext()){
              val id = dataJob.getInt(0)
              val code = dataJob.getString(1)
@@ -112,6 +112,9 @@ class MyJobViewModel @Inject constructor(
     fun deleteJob(job: Job , context: Context){
         sqLiteHelper = SQLiteHelper(context, "Data.sqlite", null, 5)
         sqLiteHelper!!.QueryData("DELETE FROM Job4 WHERE JobCode ='${job.codeJob}'")
+        sqLiteHelper!!.QueryData("DELETE FROM Apply WHERE IdJob ='${job.idJob}'")
+        sqLiteHelper!!.QueryData("DELETE FROM Skill1 WHERE IdJob ='${job.codeJob}'")
+        sqLiteHelper!!.QueryData("DELETE FROM Question WHERE IdJob ='${job.codeJob}'")
         uiEventLiveData.value = DELETE_SUCCESS
     }
 }

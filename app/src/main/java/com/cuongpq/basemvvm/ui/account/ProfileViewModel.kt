@@ -1,7 +1,10 @@
 package com.cuongpq.basemvvm.ui.account
 
+import android.content.Context
 import com.cuongpq.basemvvm.data.local.AppDatabase
+import com.cuongpq.basemvvm.data.model.User
 import com.cuongpq.basemvvm.data.remote.InteractCommon
+import com.cuongpq.basemvvm.data.sqlite.SQLiteHelper
 import com.cuongpq.basemvvm.ui.base.viewmodel.BaseViewModel
 import com.google.firebase.auth.FirebaseAuth
 import java.util.concurrent.Executor
@@ -23,6 +26,7 @@ class ProfileViewModel @Inject constructor(
         const val ON_CLICK_SET_AVT = 1004
         const val ON_CLICK_COMPANY = 1005
         const val ON_CLICK_INFORMATION = 1006
+        const val ON_CLICK_PAY = 1007
     }
     init {
         auth = FirebaseAuth.getInstance()
@@ -54,5 +58,12 @@ class ProfileViewModel @Inject constructor(
     }
     fun onClickInformation(){
         uiEventLiveData.value = ON_CLICK_INFORMATION
+    }
+    fun onClickPay(){
+        uiEventLiveData.value = ON_CLICK_PAY
+    }
+    fun saveAvatarToDB(user: User,strAvatar: String,context: Context){
+        val sqLiteHelper = SQLiteHelper(context, "Data.sqlite", null, 5)
+        sqLiteHelper.QueryData("UPDATE UserAvatar SET avatar = '$strAvatar' WHERE IdUser ='${user.idAccount}'")
     }
 }
