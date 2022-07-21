@@ -54,10 +54,10 @@ class AnswerFragment(private val job: Job,private val user: User) : BaseMvvmFrag
     }
 
     private fun goToPayerActivity(){
-        val intent = Intent(context, PayerActivity::class.java)
-        intent.putExtra("userId",user!!.idAccount)
-        startActivity(intent)
-    //    Toast.makeText(context,"Bạn phải thanh toán để sử dụng app!", Toast.LENGTH_SHORT).show()
+//        val intent = Intent(context, PayerActivity::class.java)
+//        intent.putExtra("userId",user!!.idAccount)
+//        startActivity(intent)
+        Toast.makeText(context,"Bạn phải thanh toán để sử dụng app!", Toast.LENGTH_SHORT).show()
     }
 
 //    private fun onClickComfirm() {

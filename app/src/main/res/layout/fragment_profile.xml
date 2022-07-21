@@ -129,7 +129,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:layout_weight="1"
-                android:text="Dịch vụ"
+                android:text="Thanh toan dịch vụ"
                 android:textColor="#D8D2D2"
                 android:textSize="20dp"
                 android:paddingBottom="15dp"
