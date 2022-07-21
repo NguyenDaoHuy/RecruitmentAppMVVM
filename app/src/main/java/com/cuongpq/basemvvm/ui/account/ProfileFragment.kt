@@ -21,6 +21,7 @@ import com.bumptech.glide.Glide
 import com.cuongpq.basemvvm.R
 import com.cuongpq.basemvvm.data.model.User
 import com.cuongpq.basemvvm.databinding.FragmentProfileBinding
+
 import com.cuongpq.basemvvm.ui.account.information.InformationFragment
 import com.cuongpq.basemvvm.ui.account.update_skill.UpdateSkillFragment
 import com.cuongpq.basemvvm.ui.base.fragment.BaseMvvmFragment
@@ -28,6 +29,9 @@ import com.cuongpq.basemvvm.ui.base.viewmodel.BaseViewModel
 import com.cuongpq.basemvvm.ui.employer.company.update_company.UpdateCompanyFragment
 import com.cuongpq.basemvvm.ui.login.FirstActivity
 import com.cuongpq.basemvvm.ui.payer.PayerActivity
+import com.cuongpq.basemvvm.ui.payer.PayerTestActivity
+import com.cuongpq.basemvvm.ui.payer.payper2.CardActivity
+import com.cuongpq.basemvvm.ui.payer.payper2.Payer2Activity
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
@@ -127,6 +131,7 @@ class ProfileFragment(var user : User?) : BaseMvvmFragment<ProfileCallBack,Profi
 
     private fun goToPayer(){
         val intent = Intent(context,PayerActivity::class.java)
+        intent.putExtra("userId",user!!.idAccount)
         startActivity(intent)
     }
 

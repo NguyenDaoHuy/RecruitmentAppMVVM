@@ -1,6 +1,5 @@
 package com.cuongpq.basemvvm.ui.employer.job.my_job
 
-import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.content.DialogInterface
 import android.os.Bundle
@@ -17,7 +16,7 @@ import com.cuongpq.basemvvm.ui.employer.create_job.create_description.AddJobFrag
 import com.cuongpq.basemvvm.ui.employer.job.job_information.JobInformationFragment
 
 class MyJobFragment(private var user: User?) : BaseMvvmFragment<MyJobCallBack, MyJobViewModel>() , MyJobCallBack, JobAdapter.IJob{
-    private var searchString : String? = null
+    private var searchString : String = ""
     override fun setEvents() {
 
     }
@@ -117,7 +116,6 @@ class MyJobFragment(private var user: User?) : BaseMvvmFragment<MyJobCallBack, M
     }
 
     private fun setStatusSuccess(){
-
         mModel.getJobDataFromDB(requireContext(),user!!,searchString!!)
         getBindingData().rcvListMyJob.adapter!!.notifyDataSetChanged()
     }

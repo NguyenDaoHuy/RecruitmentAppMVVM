@@ -61,6 +61,7 @@ class RegisterViewModel @Inject constructor(
                 val user = User(IdAcount,email,password,userName,age,phone,permission)
                 sqLiteHelper.QueryData("INSERT INTO User VALUES(null,'$IdAcount','$email','$password','$userName','$age','$phone','$permission','0')")
                 sqLiteHelper.QueryData("INSERT INTO UserAvatar VALUES(null,'${user.idAccount}','')")
+                sqLiteHelper.QueryData("INSERT INTO UserActive VALUES(null,'${user.idAccount}','0')")
                 databaseReference!!.child(IdAcount).setValue(user)
                 uiEventLiveData.value = REGISTER_SUCCESS
             } else {

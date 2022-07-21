@@ -37,7 +37,7 @@ class MyJobViewModel @Inject constructor(
     fun getJobDataFromDB(context: Context,user : User,text: String){
         listJob = ArrayList()
         sqLiteHelper = SQLiteHelper(context, "Data.sqlite", null, 5)
-        val dataJob = sqLiteHelper!!.GetData("SELECT * FROM Job4 WHERE IdEmployer = '${user.idAccount}' AND JobName LIKE '%$text%'")
+        val dataJob = sqLiteHelper!!.GetData("SELECT * FROM Job4 WHERE IdEmployer = '${user.idAccount}' AND JobName LIKE '%$text%' ORDER BY Id DESC")
         while (dataJob.moveToNext()){
              val id = dataJob.getInt(0)
              val code = dataJob.getString(1)

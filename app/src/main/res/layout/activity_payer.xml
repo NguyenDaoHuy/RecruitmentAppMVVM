@@ -9,16 +9,46 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-          <Button
+        android:layout_height="match_parent"
+        android:background="@color/color_main">
+          <TextView
+              android:id="@+id/tv"
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
-              android:text="Thanh toán"
-              android:textAllCaps="false"
+              android:text="Bạn vui lòng thanh toán 30$ \n để có thể sử dụng dịch vụ !"
+              android:textSize="20dp"
+              android:textStyle="bold"
               android:layout_centerInParent="true"
-              android:background="@drawable/custom_box_create_request"
-              android:paddingLeft="30dp"
-              android:paddingRight="30dp"
-              android:onClick="@{() -> payerActivityViewModel.onClickPay()}"/>
+              android:textColor="#FFC107"/>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_below="@+id/tv"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="30dp">
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Dùng thử 30 ngày"
+                android:textAllCaps="false"
+                android:layout_centerInParent="true"
+                android:background="@drawable/custom_box_create_request_2"
+                android:paddingLeft="30dp"
+                android:paddingRight="30dp"
+                android:onClick="@{() -> payerActivityViewModel.onClickTrial()}"
+                android:layout_marginRight="15dp"/>
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Thanh toán"
+                android:textAllCaps="false"
+                android:layout_centerInParent="true"
+                android:background="@drawable/custom_box_create_request"
+                android:paddingLeft="30dp"
+                android:paddingRight="30dp"
+                android:onClick="@{() -> payerActivityViewModel.onClickPay()}"/>
+        </LinearLayout>
+
     </RelativeLayout>
 </layout>

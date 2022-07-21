@@ -1,6 +1,7 @@
 package com.cuongpq.basemvvm.ui.candidate.answer
 
 import android.app.AlertDialog
+import android.content.Intent
 import android.view.View
 import android.widget.Button
 import android.widget.Toast
@@ -13,6 +14,7 @@ import com.cuongpq.basemvvm.databinding.FragmentAnswerBinding
 import com.cuongpq.basemvvm.ui.base.fragment.BaseMvvmFragment
 import com.cuongpq.basemvvm.ui.base.viewmodel.BaseViewModel
 import com.cuongpq.basemvvm.ui.candidate.list_job.ListJobSearchFragment
+import com.cuongpq.basemvvm.ui.payer.PayerActivity
 
 class AnswerFragment(private val job: Job,private val user: User) : BaseMvvmFragment<AnswerCallBack,AnswerViewModel>(),AnswerCallBack,AnswerTheQuestionAdapter.IAnswerTheQuestion{
 
@@ -24,6 +26,7 @@ class AnswerFragment(private val job: Job,private val user: User) : BaseMvvmFrag
                 AnswerViewModel.CLICK_COMFIRM -> onClickComfirm()
                 AnswerViewModel.APPLY_SUCCESS -> onApplySuccess()
                 AnswerViewModel.APPLY_ERROR -> onApplyError()
+                AnswerViewModel.GO_TO_PAYER -> goToPayerActivity()
             }
         }
         initRecyclerView()
@@ -48,6 +51,13 @@ class AnswerFragment(private val job: Job,private val user: User) : BaseMvvmFrag
             fragmentTransaction.commit()
             dialog.dismiss()
         }
+    }
+
+    private fun goToPayerActivity(){
+        val intent = Intent(context, PayerActivity::class.java)
+        intent.putExtra("userId",user!!.idAccount)
+        startActivity(intent)
+    //    Toast.makeText(context,"Bạn phải thanh toán để sử dụng app!", Toast.LENGTH_SHORT).show()
     }
 
 //    private fun onClickComfirm() {

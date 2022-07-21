@@ -22,16 +22,19 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BaseMVVM">
         <activity
-            android:name=".CardActivity"
+            android:name=".Payer3Activity"
             android:exported="false" />
         <activity
-            android:name=".Payer2Activity"
+            android:name=".ui.payer.payper2.Payer2Activity"
             android:exported="false" />
         <activity
-            android:name=".ui.payer.PayerTestActivity"
+            android:name=".ui.payer.payper2.CardActivity"
             android:exported="false" />
         <activity
             android:name=".ui.payer.PayerActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.payer.PayerTestActivity"
             android:exported="false" />
         <activity
             android:name=".ui.employer.EmployerMainActivity"

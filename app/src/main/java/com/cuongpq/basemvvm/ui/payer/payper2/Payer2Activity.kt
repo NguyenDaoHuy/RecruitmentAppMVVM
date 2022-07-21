@@ -40,7 +40,7 @@ class Payer2Activity : AppCompatActivity() {
             }
             override fun onResponse(call: Call, response: Response) {
                 if(!response.isSuccessful){
-                    displayAlert("Request failed","Error : $response")
+                    displayAlert("Request failed response","Error : $response")
                 }else{
                     val responseData  = response.body?.string()
                     val responseJson = responseData?.let { JSONObject(it) }?: JSONObject()

@@ -32,7 +32,7 @@ class NotificationViewModel  @Inject constructor(
     fun getDataNotification(employer : User,context: Context){
         listNotification = ArrayList()
         val sqLiteHelper = SQLiteHelper(context, "Data.sqlite", null, 5)
-        val dataNotification = sqLiteHelper.GetData("SELECT * FROM Apply WHERE IdEmployer = '${employer.idAccount}'")
+        val dataNotification = sqLiteHelper.GetData("SELECT * FROM Apply WHERE IdEmployer = '${employer.idAccount}' ORDER BY Id DESC")
         while (dataNotification.moveToNext()){
             val id = dataNotification.getInt(0)
             val IdCandidate = dataNotification.getString(1)
@@ -121,6 +121,6 @@ class NotificationViewModel  @Inject constructor(
         }
     }
     fun getListNotification() : ArrayList<NotificationItem>{
-        return listNotification!!.reversed() as ArrayList<NotificationItem>
+        return listNotification!!
     }
 }

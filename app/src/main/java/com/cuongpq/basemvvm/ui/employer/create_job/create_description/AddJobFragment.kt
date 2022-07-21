@@ -2,6 +2,7 @@ package com.cuongpq.basemvvm.ui.employer.create_job.create_description
 
 import android.app.AlertDialog
 import android.content.DialogInterface
+import android.content.Intent
 import android.widget.Toast
 import com.cuongpq.basemvvm.R
 import com.cuongpq.basemvvm.data.model.User
@@ -10,6 +11,7 @@ import com.cuongpq.basemvvm.ui.base.fragment.BaseMvvmFragment
 import com.cuongpq.basemvvm.ui.base.viewmodel.BaseViewModel
 import com.cuongpq.basemvvm.ui.employer.create_job.create_request.CreateRequestFragment
 import com.cuongpq.basemvvm.ui.employer.company.update_company.UpdateCompanyFragment
+import com.cuongpq.basemvvm.ui.payer.PayerActivity
 
 class AddJobFragment(private var user: User?) : BaseMvvmFragment<CreateJobCallBack, AddJobViewModel>(),
     CreateJobCallBack {
@@ -32,6 +34,7 @@ class AddJobFragment(private var user: User?) : BaseMvvmFragment<CreateJobCallBa
                  AddJobViewModel.ADD_JOB_ERROR -> addJobError()
                  AddJobViewModel.NEXT_TO_REQUEST -> onAddJob()
                  AddJobViewModel.ADD_JOB_EXISTS -> addJobExists()
+                 AddJobViewModel.GO_TO_PAYER -> goToPayer()
             }
         }
     }
@@ -50,6 +53,13 @@ class AddJobFragment(private var user: User?) : BaseMvvmFragment<CreateJobCallBa
     }
     companion object {
         val TAG = AddJobFragment::class.java.name
+    }
+
+    fun goToPayer(){
+        val intent = Intent(context, PayerActivity::class.java)
+        intent.putExtra("userId",user!!.idAccount)
+        startActivity(intent)
+   //     Toast.makeText(context, "Vui lòng thanh toán để sử dụng app", Toast.LENGTH_SHORT).show()
     }
 
     private fun onAddJob() {
