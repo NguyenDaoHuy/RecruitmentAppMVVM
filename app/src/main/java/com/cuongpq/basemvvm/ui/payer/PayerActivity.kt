@@ -36,7 +36,7 @@ class PayerActivity() : BaseMVVMActivity<PayerActivityCallBack,PayerActivityView
             }
         }
         userId = intent.getStringExtra("userId").toString()
-        Toast.makeText(this,userId,Toast.LENGTH_SHORT).show()
+//        Toast.makeText(this,userId,Toast.LENGTH_SHORT).show()
         PaymentConfiguration.init(this,PUBLISH_KEY)
         paymentSheet = PaymentSheet(this) { paymentSheetResult: PaymentSheetResult? ->
             onPaymentResult(paymentSheetResult!!)
@@ -90,7 +90,7 @@ class PayerActivity() : BaseMVVMActivity<PayerActivityCallBack,PayerActivityView
     }
     fun onTrial30Days(){
         if(mModel.checkActive(applicationContext,userId)){
-            Toast.makeText(this,"Tai khoan da duoc gia han" , Toast.LENGTH_SHORT).show()
+            Toast.makeText(this,"Tài khoản đã được gia hạn" , Toast.LENGTH_SHORT).show()
         }else{
             mModel.setActive(applicationContext,userId)
         }
@@ -104,13 +104,13 @@ class PayerActivity() : BaseMVVMActivity<PayerActivityCallBack,PayerActivityView
     private fun onPaymentResult(paymentSheetResult: PaymentSheetResult) {
         when(paymentSheetResult){
             is PaymentSheetResult.Canceled -> {
-                Toast.makeText(this, "Payment Cancel", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Hủy bỏ thanh toán", Toast.LENGTH_SHORT).show()
             }
             is PaymentSheetResult.Failed -> {
-                Toast.makeText(this, "Payment Failed", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Thanh toán thất bại", Toast.LENGTH_SHORT).show()
             }
             is PaymentSheetResult.Completed -> {
-                Toast.makeText(this, "Payment Success", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Thanh toán thành công", Toast.LENGTH_SHORT).show()
                 mModel.setActive(applicationContext,userId)
             }
         }
