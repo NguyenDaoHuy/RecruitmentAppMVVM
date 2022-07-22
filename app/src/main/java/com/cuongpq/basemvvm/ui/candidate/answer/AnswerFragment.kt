@@ -26,7 +26,6 @@ class AnswerFragment(private val job: Job,private val user: User) : BaseMvvmFrag
                 AnswerViewModel.CLICK_COMFIRM -> onClickComfirm()
                 AnswerViewModel.APPLY_SUCCESS -> onApplySuccess()
                 AnswerViewModel.APPLY_ERROR -> onApplyError()
-                AnswerViewModel.GO_TO_PAYER -> goToPayerActivity()
             }
         }
         initRecyclerView()
@@ -51,13 +50,6 @@ class AnswerFragment(private val job: Job,private val user: User) : BaseMvvmFrag
             fragmentTransaction.commit()
             dialog.dismiss()
         }
-    }
-
-    private fun goToPayerActivity(){
-//        val intent = Intent(context, PayerActivity::class.java)
-//        intent.putExtra("userId",user!!.idAccount)
-//        startActivity(intent)
-        Toast.makeText(context,"Bạn phải thanh toán để sử dụng app!", Toast.LENGTH_SHORT).show()
     }
 
 //    private fun onClickComfirm() {

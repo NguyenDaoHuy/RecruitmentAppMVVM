@@ -3,12 +3,15 @@ package com.cuongpq.basemvvm.ui.employer.create_job.create_description
 import android.app.AlertDialog
 import android.content.DialogInterface
 import android.content.Intent
+import android.view.View
+import android.widget.Button
 import android.widget.Toast
 import com.cuongpq.basemvvm.R
 import com.cuongpq.basemvvm.data.model.User
 import com.cuongpq.basemvvm.databinding.FragmentAddJobBinding
 import com.cuongpq.basemvvm.ui.base.fragment.BaseMvvmFragment
 import com.cuongpq.basemvvm.ui.base.viewmodel.BaseViewModel
+import com.cuongpq.basemvvm.ui.candidate.list_job.ListJobSearchFragment
 import com.cuongpq.basemvvm.ui.employer.create_job.create_request.CreateRequestFragment
 import com.cuongpq.basemvvm.ui.employer.company.update_company.UpdateCompanyFragment
 import com.cuongpq.basemvvm.ui.payer.PayerActivity
@@ -56,10 +59,28 @@ class AddJobFragment(private var user: User?) : BaseMvvmFragment<CreateJobCallBa
     }
 
     fun goToPayer(){
-        val intent = Intent(context, PayerActivity::class.java)
-        intent.putExtra("userId",user!!.idAccount)
-        startActivity(intent)
-   //     Toast.makeText(context, "Vui lòng thanh toán để sử dụng app", Toast.LENGTH_SHORT).show()
+//        val intent = Intent(context, PayerActivity::class.java)
+//        intent.putExtra("userId",user!!.idAccount)
+//        startActivity(intent)
+//        Toast.makeText(context, "Vui lòng thanh toán để sử dụng app", Toast.LENGTH_SHORT).show()
+        val view = View.inflate(context, R.layout.dialog_view, null)
+        val builder = AlertDialog.Builder(context)
+        builder.setView(view)
+        val dialog = builder.create()
+        dialog.show()
+        dialog.window?.setBackgroundDrawableResource(R.color.transparent)
+        dialog.setCancelable(false)
+        val btnCancel  = view.findViewById<Button>(R.id.btnCancel)
+        val btnGoPAY  = view.findViewById<Button>(R.id.btnGoPay)
+        btnGoPAY.setOnClickListener {
+            val intent = Intent(context, PayerActivity::class.java)
+            intent.putExtra("userId",user!!.idAccount)
+            startActivity(intent)
+            dialog.dismiss()
+        }
+        btnCancel.setOnClickListener {
+            dialog.dismiss()
+        }
     }
 
     private fun onAddJob() {

@@ -37,10 +37,10 @@
         android:orientation="horizontal"
         android:layout_gravity="center">
         <Button
-            android:id="@+id/btnTrial30Days"
+            android:id="@+id/btnCancel"
             android:layout_width="wrap_content"
             android:layout_height="40dp"
-            android:text="Dùng thử 30 ngày "
+            android:text="Hủy bỏ "
             android:textAllCaps="false"
             android:background="#A69595"
             android:textColor="@color/white"
@@ -48,10 +48,10 @@
             android:layout_marginTop="10dp"
             android:layout_marginBottom="20dp"/>
         <Button
-            android:id="@+id/btnBuy"
+            android:id="@+id/btnGoPay"
             android:layout_width="wrap_content"
             android:layout_height="40dp"
-            android:text="Trả phí "
+            android:text="Đến trang trả phí "
             android:textAllCaps="false"
             android:background="#D33E3E"
             android:textColor="@color/white"

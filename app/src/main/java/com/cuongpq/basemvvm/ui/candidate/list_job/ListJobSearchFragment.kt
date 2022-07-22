@@ -1,7 +1,11 @@
 package com.cuongpq.basemvvm.ui.candidate.list_job
 
 import android.annotation.SuppressLint
+import android.app.AlertDialog
+import android.content.Intent
 import android.os.Bundle
+import android.view.View
+import android.widget.Button
 import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.cuongpq.basemvvm.R
@@ -11,6 +15,7 @@ import com.cuongpq.basemvvm.databinding.FragmentListJobSearchBinding
 import com.cuongpq.basemvvm.ui.base.fragment.BaseMvvmFragment
 import com.cuongpq.basemvvm.ui.employer.job.job_information.JobInformationFragment
 import com.cuongpq.basemvvm.ui.employer.job.my_job.JobAdapter
+import com.cuongpq.basemvvm.ui.payer.PayerActivity
 
 class ListJobSearchFragment(var user: User?) : BaseMvvmFragment<ListJobCallBack,ListJobSearchViewModel>(),ListJobCallBack,JobAdapter.IJob {
 
@@ -74,15 +79,40 @@ class ListJobSearchFragment(var user: User?) : BaseMvvmFragment<ListJobCallBack,
     }
 
     override fun onClickJob(position: Int) {
-        val job = mModel.getListJobSearch()[position]
-        val jobInformationFragment = JobInformationFragment(user!!)
-        val bundle = Bundle()
-        bundle.putSerializable("job",job)
-        jobInformationFragment.arguments = bundle
-        val fragmentTransaction = requireActivity().supportFragmentManager.beginTransaction()
-        fragmentTransaction.replace(R.id.fragmentMain2, jobInformationFragment)
-        fragmentTransaction.addToBackStack(JobInformationFragment.TAG)
-        fragmentTransaction.commit()
+        if(mModel.checkActive(requireContext(),user!!.idAccount)) {
+            val job = mModel.getListJobSearch()[position]
+            val jobInformationFragment = JobInformationFragment(user!!)
+            val bundle = Bundle()
+            bundle.putSerializable("job",job)
+            jobInformationFragment.arguments = bundle
+            val fragmentTransaction = requireActivity().supportFragmentManager.beginTransaction()
+            fragmentTransaction.replace(R.id.fragmentMain2, jobInformationFragment)
+            fragmentTransaction.addToBackStack(JobInformationFragment.TAG)
+            fragmentTransaction.commit()
+        }else{
+            goToPay()
+        }
+    }
+
+    fun goToPay(){
+        val view = View.inflate(context, R.layout.dialog_view, null)
+        val builder = AlertDialog.Builder(context)
+        builder.setView(view)
+        val dialog = builder.create()
+        dialog.show()
+        dialog.window?.setBackgroundDrawableResource(R.color.transparent)
+        dialog.setCancelable(false)
+        val btnCancel  = view.findViewById<Button>(R.id.btnCancel)
+        val btnGoPAY  = view.findViewById<Button>(R.id.btnGoPay)
+        btnGoPAY.setOnClickListener {
+            val intent = Intent(context, PayerActivity::class.java)
+            intent.putExtra("userId",user!!.idAccount)
+            startActivity(intent)
+            dialog.dismiss()
+        }
+        btnCancel.setOnClickListener {
+            dialog.dismiss()
+        }
     }
 
     override fun onClickPower(position: Int) {

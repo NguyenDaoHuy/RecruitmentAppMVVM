@@ -25,6 +25,7 @@ class ListJobSearchViewModel@Inject constructor(
     private lateinit var userJob : User
     private lateinit var company: Company
     private var sqLiteHelper : SQLiteHelper? = null
+    private var active : Int? = null
 
     companion object
 
@@ -90,5 +91,16 @@ class ListJobSearchViewModel@Inject constructor(
     }
     fun getListJobSearch() : ArrayList<Job>{
         return listJob!!
+    }
+    fun checkActive(context: Context,userId : String) : Boolean{
+        val sqLiteHelper = SQLiteHelper(context, "Data.sqlite", null, 5)
+        val cursor = sqLiteHelper.GetData("SELECT * FROM UserActive WHERE IdUser = '$userId'")
+        while (cursor.moveToNext()) {
+            active = cursor.getInt(2)
+        }
+        if(active == 1){
+            return true
+        }else
+            return false
     }
 }
