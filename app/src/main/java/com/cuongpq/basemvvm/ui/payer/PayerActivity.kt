@@ -37,6 +37,7 @@ class PayerActivity() : BaseMVVMActivity<PayerActivityCallBack,PayerActivityView
         }
         userId = intent.getStringExtra("userId").toString()
 //        Toast.makeText(this,userId,Toast.LENGTH_SHORT).show()
+        Toast.makeText(this,"Xin vui lòng đợi 10s rồi ấn chả tắt app :v",Toast.LENGTH_SHORT).show()
         PaymentConfiguration.init(this,PUBLISH_KEY)
         paymentSheet = PaymentSheet(this) { paymentSheetResult: PaymentSheetResult? ->
             onPaymentResult(paymentSheetResult!!)
