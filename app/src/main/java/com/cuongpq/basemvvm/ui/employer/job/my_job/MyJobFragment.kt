@@ -3,6 +3,7 @@ package com.cuongpq.basemvvm.ui.employer.job.my_job
 import android.app.AlertDialog
 import android.content.DialogInterface
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -31,6 +32,9 @@ class MyJobFragment(private var user: User?) : BaseMvvmFragment<MyJobCallBack, M
              }
          }
         mModel.getJobDataFromDB(requireContext(),user!!,"")
+        if(mModel.getListJob().size == 0){
+             getBindingData().tvThongBaoNull.visibility = View.VISIBLE
+        }
         initRecyclerViewoJob()
         onSearch()
     }

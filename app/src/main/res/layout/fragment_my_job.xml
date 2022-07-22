@@ -36,6 +36,20 @@
             android:layout_below="@+id/searchView"
             android:layout_marginBottom="100dp"
             android:padding="10dp" />
+        <RelativeLayout
+            android:id="@+id/tvThongBaoNull"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:visibility="gone">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tạo công việc ngay nhé !"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:textSize="20dp"/>
+        </RelativeLayout>
 
         <Button
             android:id="@+id/btnAddJob"
